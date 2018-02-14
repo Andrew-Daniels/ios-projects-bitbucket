@@ -89,31 +89,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! CollectionViewCell
-        cell.layer.cornerRadius = 35
-        cell.layer.borderColor = UIColor.green.cgColor
-        cell.layer.borderWidth = 4
-        cell.tag = indexPath.row
         if !filter {
-            if let profileImage = profileImages[indexPath.row].profileImage {
-                cell.profileImageView.image = profileImage
-                cell.initialsLabel.isHidden = true
-            } else {
-                cell.profileImageView.image = nil
-                cell.initialsLabel.text = profileImages[indexPath.row].getInitials()
-                cell.initialsLabel.isHidden = false
-            }
-            return cell
+            cell.profilePicture(pp: ProfilePicture(tag: indexPath.row, image: profileImages[indexPath.row].profileImage, initials: profileImages[indexPath.row].getInitials()))
         } else {
-            if let profileImage = filteredAthletes[indexPath.row].profileImage {
-                cell.profileImageView.image = profileImage
-                cell.initialsLabel.isHidden = true
-            } else {
-                cell.profileImageView.image = nil
-                cell.initialsLabel.text = filteredAthletes[indexPath.row].getInitials()
-                cell.initialsLabel.isHidden = false
-            }
-            return cell
+            cell.profilePicture(pp: ProfilePicture(tag: indexPath.row, image: filteredAthletes[indexPath.row].profileImage, initials: filteredAthletes[indexPath.row].getInitials()))
         }
+        return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "workoutSelector", sender: self.collectionView.cellForItem(at: indexPath))
@@ -160,18 +141,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let logView = segue.destination as! SecondViewController
+        let sVC = segue.destination as! SecondViewController
         let sender = sender as! CollectionViewCell
-        let tag = sender.tag
-        if !filter {
-            logView.name = profileImages[tag].name
-            logView.profileImage = profileImages[tag].profileImage
-            logView.initials = profileImages[tag].getInitials()
-        } else {
-            logView.name = filteredAthletes[tag].name
-            logView.profileImage = filteredAthletes[tag].profileImage
-            logView.initials = filteredAthletes[tag].getInitials()
-        }
+        sVC.profilePicture = sender.getProfilePicture()
     }
     
     //MARK: - Developer Created Functions
@@ -209,7 +181,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         athletesSubView.layer.cornerRadius = 5
         athletesSubView.layer.borderWidth = 2
         athletesSubView.layer.borderColor = UIColor.black.cgColor
-        tableView.register(UINib(nibName: "CustomHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CustomHeader")
+        //tableView.register(UINib(nibName: "CustomHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CustomHeader")
         
         // Do any additional setup after loading the view, typically from a nib.
     }

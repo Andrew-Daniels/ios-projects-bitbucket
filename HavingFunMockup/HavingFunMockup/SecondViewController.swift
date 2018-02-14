@@ -21,6 +21,7 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var name = ""
     var initials = ""
     var profileImage: UIImage?
+    var profilePicture: ProfilePicture?
     
     //MARK: - UIPickerViewDelegate
     
@@ -91,16 +92,8 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        profileImageView.layer.cornerRadius = 35
-        profileImageView.layer.borderWidth = 4
-        profileImageView.layer.borderColor = UIColor.green.cgColor
-        if let image = profileImage {
-            profileImageView.image = image
-            initialsLabel.isHidden = true
-            
-        } else {
-            initialsLabel.text = initials
-            initialsLabel.isHidden = false
+        if let profilePicture = profilePicture {
+            setProfilePicture(pp: profilePicture)
         }
         self.navigationItem.title = name
         profileImageView.layer.masksToBounds = true
@@ -108,6 +101,15 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let view2 = Push_Ups.instanceFromNib()
         self.optionsView.addSubview(view2)
         optionsView.contentSize = CGSize(width: optionsView.frame.width, height: view2.frame.height)
+    }
+    
+    func setProfilePicture(pp: ProfilePicture) {
+        profileImageView.image = pp.image
+        initialsLabel.isHidden = pp.initialsHidden
+        initialsLabel.text = pp.initials
+        profileImageView.layer.cornerRadius = CGFloat(pp.radius)
+        profileImageView.layer.borderColor = pp.borderColor
+        profileImageView.layer.borderWidth = CGFloat(pp.borderWidth)
     }
 
     override func didReceiveMemoryWarning() {
