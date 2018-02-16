@@ -19,8 +19,6 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var dictOfWorkouts = ["Push Ups": ["All", "Chest"], "Squats":["All", "Legs"], "1 Mile":["All", "Cardio"], "2 Miles":["All", "Cardio"], "Dead Lifts":["All", "Back"]]
     var components = ["All", "Legs", "Cardio", "Chest", "Back"]
     var name = ""
-    var initials = ""
-    var profileImage: UIImage?
     var profilePicture: ProfilePicture?
     
     //MARK: - UIPickerViewDelegate
@@ -94,9 +92,9 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         super.viewDidLoad()
         if let profilePicture = profilePicture {
             setProfilePicture(pp: profilePicture)
+            self.name = profilePicture.name
         }
         self.navigationItem.title = name
-        profileImageView.layer.masksToBounds = true
         // Do any additional setup after loading the view.
         let view2 = Push_Ups.instanceFromNib()
         self.optionsView.addSubview(view2)
@@ -110,6 +108,7 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         profileImageView.layer.cornerRadius = CGFloat(pp.radius)
         profileImageView.layer.borderColor = pp.borderColor
         profileImageView.layer.borderWidth = CGFloat(pp.borderWidth)
+        profileImageView.layer.masksToBounds = true
     }
 
     override func didReceiveMemoryWarning() {

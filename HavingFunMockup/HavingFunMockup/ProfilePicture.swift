@@ -17,10 +17,12 @@ class ProfilePicture {
     var image: UIImage?
     var initialsHidden = false
     var initials = ""
-    init(tag: Int, image: UIImage?, initials: String) {
+    var name = ""
+    init(tag: Int, image: UIImage?, initials: String, name: String) {
         self.tag = tag
         self.image = image
         self.initials = initials
+        self.name = name
         getHidden()
     }
     

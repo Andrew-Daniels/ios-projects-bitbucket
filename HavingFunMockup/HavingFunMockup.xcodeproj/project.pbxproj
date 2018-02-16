@@ -10,6 +10,7 @@
 		3124A95B202E89BB00BE047B /* Push_Ups.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3124A95A202E89BB00BE047B /* Push_Ups.xib */; };
 		3124A95D202E8B3E00BE047B /* Push_Ups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3124A95C202E8B3E00BE047B /* Push_Ups.swift */; };
 		3124A96120328C6400BE047B /* ProfilePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3124A96020328C6400BE047B /* ProfilePicture.swift */; };
+		3124A9672035F61E00BE047B /* DailyStatsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3124A9662035F61E00BE047B /* DailyStatsViews.swift */; };
 		315A384220251E0500F05294 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315A384120251E0500F05294 /* AppDelegate.swift */; };
 		315A384420251E0500F05294 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315A384320251E0500F05294 /* ViewController.swift */; };
 		315A384720251E0500F05294 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 315A384520251E0500F05294 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 		3124A95A202E89BB00BE047B /* Push_Ups.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Push_Ups.xib; sourceTree = "<group>"; };
 		3124A95C202E8B3E00BE047B /* Push_Ups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Push_Ups.swift; sourceTree = "<group>"; };
 		3124A96020328C6400BE047B /* ProfilePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicture.swift; sourceTree = "<group>"; };
+		3124A9662035F61E00BE047B /* DailyStatsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStatsViews.swift; sourceTree = "<group>"; };
 		315A383E20251E0500F05294 /* HavingFunMockup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HavingFunMockup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		315A384120251E0500F05294 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		315A384320251E0500F05294 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				315A384120251E0500F05294 /* AppDelegate.swift */,
+				3124A9662035F61E00BE047B /* DailyStatsViews.swift */,
 				315A384320251E0500F05294 /* ViewController.swift */,
 				3124A96020328C6400BE047B /* ProfilePicture.swift */,
 				315A387A20293BC600F05294 /* Athlete.swift */,
@@ -238,6 +241,7 @@
 				315A384420251E0500F05294 /* ViewController.swift in Sources */,
 				315A387620276E9200F05294 /* CustomHeader.swift in Sources */,
 				315A386E2026491700F05294 /* WorkoutSelectorViewController.swift in Sources */,
+				3124A9672035F61E00BE047B /* DailyStatsViews.swift in Sources */,
 				315A384220251E0500F05294 /* AppDelegate.swift in Sources */,
 				315A387020276C4200F05294 /* TableViewCell.swift in Sources */,
 				315A3868202551F300F05294 /* SecondViewController.swift in Sources */,

@@ -15,6 +15,9 @@ var profileImages: [Athlete] = []
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var initialsLabel: UILabel!
+    @IBOutlet weak var statsView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
@@ -90,9 +93,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! CollectionViewCell
         if !filter {
-            cell.profilePicture(pp: ProfilePicture(tag: indexPath.row, image: profileImages[indexPath.row].profileImage, initials: profileImages[indexPath.row].getInitials()))
+            cell.profilePicture(pp: ProfilePicture(tag: indexPath.row, image: profileImages[indexPath.row].profileImage, initials: profileImages[indexPath.row].getInitials(), name: profileImages[indexPath.row].name))
         } else {
-            cell.profilePicture(pp: ProfilePicture(tag: indexPath.row, image: filteredAthletes[indexPath.row].profileImage, initials: filteredAthletes[indexPath.row].getInitials()))
+            cell.profilePicture(pp: ProfilePicture(tag: indexPath.row, image: filteredAthletes[indexPath.row].profileImage, initials: filteredAthletes[indexPath.row].getInitials(), name: filteredAthletes[indexPath.row].name))
         }
         return cell
     }
@@ -154,6 +157,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let orientation = UIDevice.current.orientation
+        setCollectionViewLayout(toInterfaceOrientation: orientation)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
@@ -178,9 +183,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         profileImages.append(Athlete(name: "Mark Ruffalo", profileImage: #imageLiteral(resourceName: "Mark Ruffalo")))
         profileImages.append(Athlete(name: "Bradley Cooper", profileImage: #imageLiteral(resourceName: "Bradley Cooper")))
         filteredAthletes = profileImages
-        athletesSubView.layer.cornerRadius = 5
+        athletesSubView.layer.cornerRadius = 10
         athletesSubView.layer.borderWidth = 2
         athletesSubView.layer.borderColor = UIColor.black.cgColor
+        statsView.layer.cornerRadius = 10
+        setProfilePicture(pp: ProfilePicture(tag: 1, image: profileImages[1].profileImage, initials: "ACD", name: "Andrew Charles Daniels"))
         //tableView.register(UINib(nibName: "CustomHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CustomHeader")
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -190,6 +197,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    //MARK: - Keyboard Functions
     
     @objc func keyboardWillShow(notification: NSNotification) {
         let orientation = UIDevice.current.orientation
@@ -211,6 +221,49 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
+        }
+    }
+    
+    //MARK: - Profile Picture Functions
+    
+    func setProfilePicture(pp: ProfilePicture) {
+        profileImageView.image = pp.image
+        initialsLabel.isHidden = pp.initialsHidden
+        initialsLabel.text = pp.initials
+        profileImageView.layer.cornerRadius = CGFloat(pp.radius)
+        profileImageView.layer.borderColor = pp.borderColor
+        profileImageView.layer.borderWidth = CGFloat(pp.borderWidth)
+        profileImageView.layer.masksToBounds = true
+        profileImageView.backgroundColor = UIColor.white
+    }
+    
+    //MARK: - UICollectionView Layout
+    
+    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+        setCollectionViewLayout(toInterfaceOrientation: toInterfaceOrientation)
+    }
+    
+    func setCollectionViewLayout(toInterfaceOrientation: UIInterfaceOrientation) {
+        let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        if ((toInterfaceOrientation == UIInterfaceOrientation.landscapeLeft) || (toInterfaceOrientation == UIInterfaceOrientation.landscapeRight)){
+            
+            layout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        }
+        else{
+            layout.scrollDirection = UICollectionViewScrollDirection.vertical
+        }
+    }
+    
+    func setCollectionViewLayout(toInterfaceOrientation: UIDeviceOrientation) {
+        let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        if ((toInterfaceOrientation == UIDeviceOrientation.landscapeLeft) || (toInterfaceOrientation == UIDeviceOrientation.landscapeRight)){
+            
+            layout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        }
+        else{
+            layout.scrollDirection = UICollectionViewScrollDirection.vertical
         }
     }
 
