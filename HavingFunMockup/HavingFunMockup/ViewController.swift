@@ -12,7 +12,7 @@ let cellIdentifier = "Cell"
 
 var profileImages: [Athlete] = []
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
     
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -29,33 +29,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var dailyStats = [["Fastest Mile": "Andrew Daniels"], ["Records Beaten": "2"], ["Achievements Earned": "0"], ["Most Consecutive":"Kevin Kipkemboi"]]
     var filteredAthletes: [Athlete] = []
     var filter = true
-    var device = UIDevice()
-    
-    //MARK: - UITableViewDelegate
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dailyStats.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! TableViewCell
-        cell.backgroundColor = UIColor.black
-        let childStats = dailyStats[indexPath.row]
-        for (a, b) in childStats {
-            cell.mainLabel.text = a
-            cell.labelData.text = b
-        }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
-        return header
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 25
-    }
     
     //MARK: - UISearchBarDelegate
     
@@ -157,8 +130,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let orientation = UIDevice.current.orientation
-        setCollectionViewLayout(toInterfaceOrientation: orientation)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
@@ -182,6 +153,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         profileImages.append(Athlete(name: "Robert Downey Jr.", profileImage: #imageLiteral(resourceName: "Robert Downey Jr")))
         profileImages.append(Athlete(name: "Mark Ruffalo", profileImage: #imageLiteral(resourceName: "Mark Ruffalo")))
         profileImages.append(Athlete(name: "Bradley Cooper", profileImage: #imageLiteral(resourceName: "Bradley Cooper")))
+        
+        profileImages.append(Athlete(name: "Vin Diesel", profileImage: #imageLiteral(resourceName: "Vin Diesel")))
+        profileImages.append(Athlete(name: "Kurt Russell", profileImage: #imageLiteral(resourceName: "Kurt Russell")))
+        profileImages.append(Athlete(name: "Will Smith", profileImage: #imageLiteral(resourceName: "Will Smith")))
+        profileImages.append(Athlete(name: "Chris Pratt", profileImage: #imageLiteral(resourceName: "Chris Pratt")))
+        profileImages.append(Athlete(name: "Chris Hemsworth", profileImage: #imageLiteral(resourceName: "Chris Hemsworth")))
+        profileImages.append(Athlete(name: "Robert Downey Jr.", profileImage: #imageLiteral(resourceName: "Robert Downey Jr")))
+        profileImages.append(Athlete(name: "Mark Ruffalo", profileImage: #imageLiteral(resourceName: "Mark Ruffalo")))
+        profileImages.append(Athlete(name: "Bradley Cooper", profileImage: #imageLiteral(resourceName: "Bradley Cooper")))
         filteredAthletes = profileImages
         athletesSubView.layer.cornerRadius = 10
         athletesSubView.layer.borderWidth = 2
@@ -191,6 +171,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         //tableView.register(UINib(nibName: "CustomHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CustomHeader")
         
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        let orientation = UIDevice.current.orientation
+        setCollectionViewLayout(toInterfaceOrientation: orientation)
     }
     
     override func didReceiveMemoryWarning() {

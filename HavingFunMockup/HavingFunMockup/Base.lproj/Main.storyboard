@@ -331,7 +331,7 @@
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="350" id="QF7-ma-7Hb"/>
                                     <constraint firstAttribute="height" priority="750" constant="319" id="iBY-YM-U52"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QNX-fQ-y7Z">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="QNX-fQ-y7Z">
                                     <size key="itemSize" width="70" height="70"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
