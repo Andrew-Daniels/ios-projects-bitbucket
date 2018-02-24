@@ -30,6 +30,7 @@ class LoginViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.statusBarStyle = .lightContent
         ourFriendsView.layer.cornerRadius = 5
         passwordView.layer.cornerRadius = 5
         // Do any additional setup after loading the view.

@@ -8,10 +8,11 @@
 
 import UIKit
 
-class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIScrollViewDelegate {
+class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     
-    @IBOutlet weak var optionsView: UIScrollView!
+    
+    @IBOutlet weak var setTableView: UITableView!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var initialsLabel: UILabel!
@@ -20,6 +21,61 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var components = ["All", "Legs", "Cardio", "Chest", "Back"]
     var name = ""
     var profilePicture: ProfilePicture?
+    var sets = 0
+    
+    //MARK: UITextFieldDelegate
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    //MARK: - UITableViewDataSource
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        sets = sets - 1
+        tableView.deleteRows(at: [indexPath], with: .left)
+        var newIndexPath = IndexPath(row: indexPath.row, section: 0)
+        while tableView.cellForRow(at: newIndexPath) != nil {
+            if tableView.cellForRow(at: newIndexPath)?.reuseIdentifier == "Cell" {
+                let cell = tableView.cellForRow(at: newIndexPath) as! TableViewCell
+                cell.setNumberLabel.text = String(newIndexPath.row + 1)
+            }
+            newIndexPath.row += 1
+        }
+    }
+    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        UIApplication.shared.sendAction(#selector(resignFirstResponder), to: nil, from: nil, for: nil)
+        print("should resign here")
+        self.view.endEditing(true)
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if tableView.cellForRow(at: indexPath)?.reuseIdentifier != "AddSetCell" {
+            return true
+        }
+        return false
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sets + 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.view.endEditing(true)
+        if indexPath.row == sets {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AddSetCell", for: indexPath) as! TableViewCell
+            return cell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
+        cell.setNumberLabel.text = String(indexPath.row + 1)
+        self.view.endEditing(true)
+        cell.repTextfield.becomeFirstResponder()
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomTableViewHeader
+        return header
+    }
+    
     
     //MARK: - UIPickerViewDelegate
     
@@ -71,11 +127,11 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         var string = ""
         if component == 0 {
             string = components.sorted()[row]
-            return NSAttributedString(string: string, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white])
+            return NSAttributedString(string: string, attributes: [NSAttributedStringKey.foregroundColor:UIColor.black])
         } else {
             if let newString = filterWorkouts(comp: components.sorted()[pickerView.selectedRow(inComponent: 0)], row: row) {
                 string = newString
-                return NSAttributedString(string: string, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white])
+                return NSAttributedString(string: string, attributes: [NSAttributedStringKey.foregroundColor:UIColor.black])
             }
         }
         let blank: NSAttributedString? = nil
@@ -95,10 +151,17 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             self.name = profilePicture.name
         }
         self.navigationItem.title = name
+        setTableView.layer.cornerRadius = 10
+        setTableView.register(UINib(nibName: "CustomHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CustomHeader")
+        
+        //UIApplication.shared.sendAction(#selector(resignFirstResponder), to: nil, from: nil, for: nil)
         // Do any additional setup after loading the view.
-        let view2 = Push_Ups.instanceFromNib()
-        self.optionsView.addSubview(view2)
-        optionsView.contentSize = CGSize(width: optionsView.frame.width, height: view2.frame.height)
+    }
+    @IBAction func addSetToTableView(_ sender: UIButton) {
+        self.view.endEditing(true)
+        let path = IndexPath(row: sets, section: 0)
+        sets = sets + 1
+        setTableView.insertRows(at: [path], with: .right)
     }
     
     func setProfilePicture(pp: ProfilePicture) {
@@ -116,9 +179,16 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // Dispose of any resources that can be recreated.
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     //MARK: - UIScrollViewDelegate
     
-    
+    //MARK: - Add custom nib view
+    //        let view2 = Push_Ups.instanceFromNib()
+    //        self.optionsView.addSubview(view2)
+    //        optionsView.contentSize = CGSize(width: optionsView.frame.width, height: view2.frame.height)
 
     /*
     // MARK: - Navigation

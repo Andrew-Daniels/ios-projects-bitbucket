@@ -12,6 +12,9 @@ class TableViewCell: UITableViewCell {
 
     
     
+    @IBOutlet weak var setNumberLabel: UILabel!
+    @IBOutlet weak var repTextfield: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

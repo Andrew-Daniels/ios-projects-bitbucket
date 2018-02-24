@@ -11,8 +11,8 @@ import UIKit
 
 class ProfilePicture {
     var radius: CGFloat = 35
-    var borderColor = UIColor.green.cgColor
-    var borderWidth: CGFloat =  4
+    var borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
+    var borderWidth: CGFloat = 4
     var tag = 0
     var image: UIImage?
     var initialsHidden = false

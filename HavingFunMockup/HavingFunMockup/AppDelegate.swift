@@ -13,6 +13,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?   
     
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        // Otherwise, we must get the root UIViewController and iterate through presented views
+        if let rootController = UIApplication.shared.keyWindow?.rootViewController {
+            
+            var currentController: UIViewController! = rootController
+            
+            // Each ViewController keeps track of the view it has presented, so we
+            // can move from the head to the tail, which will always be the current view
+            while( currentController.presentedViewController != nil ) {
+                
+                currentController = currentController.presentedViewController
+            }
+            if currentController is ViewController {
+                return .portrait
+            }
+        }
+        return .all
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true

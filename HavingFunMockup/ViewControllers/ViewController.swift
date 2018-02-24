@@ -15,20 +15,16 @@ var profileImages: [Athlete] = []
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
     
     
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var initialsLabel: UILabel!
-    @IBOutlet weak var statsView: UIView!
+    @IBOutlet weak var statsHousingView: UIView!
+    var searchController = UISearchController(searchResultsController: nil)
+    @IBOutlet weak var dailyStatsPageView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var navItem: UINavigationItem!
-    @IBOutlet weak var portraitConstraint3: NSLayoutConstraint!
-    @IBOutlet weak var portraitConstraint2: NSLayoutConstraint!
-    @IBOutlet weak var athletesSubView: UIView!
-    @IBOutlet weak var portraitConstraint1: NSLayoutConstraint!
     var dailyStats = [["Fastest Mile": "Andrew Daniels"], ["Records Beaten": "2"], ["Achievements Earned": "0"], ["Most Consecutive":"Kevin Kipkemboi"]]
     var filteredAthletes: [Athlete] = []
     var filter = true
+    var portraitY: CGFloat = 1000
+    var landscapeY: CGFloat = 1000
     
     //MARK: - UISearchBarDelegate
     
@@ -38,6 +34,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText != "" {
+            filter = true
         let filteredAth = profileImages.filter({(item: Athlete) -> Bool in
                 
                 let stringMatch = item.name.lowercased().range(of: searchText.lowercased())
@@ -49,6 +46,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             filteredAthletes = profileImages
             collectionView.reloadData()
         }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        searchBar.text = ""
+        filter = false
+        collectionView.reloadData()
     }
     
     
@@ -117,9 +121,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let sVC = segue.destination as! SecondViewController
-        let sender = sender as! CollectionViewCell
-        sVC.profilePicture = sender.getProfilePicture()
+        if let sVC = segue.destination as? SecondViewController {
+            let sender = sender as! CollectionViewCell
+            sVC.profilePicture = sender.getProfilePicture()
+        }
     }
     
     //MARK: - Developer Created Functions
@@ -130,6 +135,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.statusBarStyle = .default
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
@@ -153,7 +159,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         profileImages.append(Athlete(name: "Robert Downey Jr.", profileImage: #imageLiteral(resourceName: "Robert Downey Jr")))
         profileImages.append(Athlete(name: "Mark Ruffalo", profileImage: #imageLiteral(resourceName: "Mark Ruffalo")))
         profileImages.append(Athlete(name: "Bradley Cooper", profileImage: #imageLiteral(resourceName: "Bradley Cooper")))
-        
         profileImages.append(Athlete(name: "Vin Diesel", profileImage: #imageLiteral(resourceName: "Vin Diesel")))
         profileImages.append(Athlete(name: "Kurt Russell", profileImage: #imageLiteral(resourceName: "Kurt Russell")))
         profileImages.append(Athlete(name: "Will Smith", profileImage: #imageLiteral(resourceName: "Will Smith")))
@@ -163,11 +168,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         profileImages.append(Athlete(name: "Mark Ruffalo", profileImage: #imageLiteral(resourceName: "Mark Ruffalo")))
         profileImages.append(Athlete(name: "Bradley Cooper", profileImage: #imageLiteral(resourceName: "Bradley Cooper")))
         filteredAthletes = profileImages
-        athletesSubView.layer.cornerRadius = 10
-        athletesSubView.layer.borderWidth = 2
-        athletesSubView.layer.borderColor = UIColor.black.cgColor
-        statsView.layer.cornerRadius = 10
-        setProfilePicture(pp: ProfilePicture(tag: 1, image: profileImages[1].profileImage, initials: "ACD", name: "Andrew Charles Daniels"))
+        statsHousingView.roundCorners([.topLeft, .topRight], radius: 10)
+        //dailyStatsPageView.layer.cornerRadius = 10
+//        setProfilePicture(pp: ProfilePicture(tag: 1, image: profileImages[1].profileImage, initials: "ACD", name: "Andrew Charles Daniels"))
         //tableView.register(UINib(nibName: "CustomHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CustomHeader")
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -188,16 +191,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: - Keyboard Functions
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        let orientation = UIDevice.current.orientation
-        if orientation == .landscapeLeft || orientation == .landscapeRight {
+        let orientation = UIApplication.shared.statusBarOrientation
+        setYCoords(orientation: orientation)
+        if orientation.isLandscape {
             if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y == 0 {
+                if self.view.frame.origin.y == landscapeY {
                     self.view.frame.origin.y -= keyboardSize.height
                 }
             }
-        } else if orientation == .portrait {
+        } else if orientation.isPortrait {
             if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y == 0 {
+                if self.view.frame.origin.y == portraitY {
                     self.view.frame.origin.y -= keyboardSize.height/2
                 }
             }
@@ -205,23 +209,40 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
+        let orientation = UIApplication.shared.statusBarOrientation
+        setYCoords(orientation: orientation)
+        if orientation == .portrait {
+            self.view.frame.origin.y = portraitY
+        } else if orientation == .landscapeRight || orientation == .landscapeLeft {
+            self.view.frame.origin.y = landscapeY
         }
     }
     
+    func setYCoords(orientation: UIInterfaceOrientation) {
+        if orientation == .portrait {
+            if portraitY == 1000 {
+                portraitY = self.view.frame.origin.y
+            }
+        } else if orientation == .landscapeLeft || orientation == .landscapeRight {
+            if landscapeY == 1000 {
+                landscapeY = self.view.frame.origin.y
+            }
+        }
+    }
+    
+    
     //MARK: - Profile Picture Functions
     
-    func setProfilePicture(pp: ProfilePicture) {
-        profileImageView.image = pp.image
-        initialsLabel.isHidden = pp.initialsHidden
-        initialsLabel.text = pp.initials
-        profileImageView.layer.cornerRadius = CGFloat(pp.radius)
-        profileImageView.layer.borderColor = pp.borderColor
-        profileImageView.layer.borderWidth = CGFloat(pp.borderWidth)
-        profileImageView.layer.masksToBounds = true
-        profileImageView.backgroundColor = UIColor.white
-    }
+//    func setProfilePicture(pp: ProfilePicture) {
+//        profileImageView.image = pp.image
+//        initialsLabel.isHidden = pp.initialsHidden
+//        initialsLabel.text = pp.initials
+//        profileImageView.layer.cornerRadius = CGFloat(pp.radius)
+//        profileImageView.layer.borderColor = pp.borderColor
+//        profileImageView.layer.borderWidth = CGFloat(pp.borderWidth)
+//        profileImageView.layer.masksToBounds = true
+//        profileImageView.backgroundColor = UIColor.white
+//    }
     
     //MARK: - UICollectionView Layout
     
@@ -253,7 +274,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
 
-    
+}
 
+extension UIView {
+    
+    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        self.layer.mask = mask
+    }
+    
 }
 
