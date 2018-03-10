@@ -13,6 +13,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     var counter = 0
     var timer = Timer()
     var nextViewControllerIndex: Int?
+    var main = DispatchQueue.main
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,9 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     @objc func timerAction() {
         counter += 1
         if counter % 10 == 0 {
-            animation()
+            main.async {
+                self.animation()
+            }
         }
     }
     

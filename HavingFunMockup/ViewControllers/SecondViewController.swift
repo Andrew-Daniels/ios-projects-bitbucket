@@ -22,6 +22,7 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var name = ""
     var profilePicture: ProfilePicture?
     var sets = 0
+    var firstTextField: UITextField?
     
     //MARK: UITextFieldDelegate
     
@@ -44,9 +45,9 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
     }
     func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
-        UIApplication.shared.sendAction(#selector(resignFirstResponder), to: nil, from: nil, for: nil)
-        print("should resign here")
-        self.view.endEditing(true)
+        if let firstTextField = firstTextField {
+            firstTextField.resignFirstResponder()
+        }
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if tableView.cellForRow(at: indexPath)?.reuseIdentifier != "AddSetCell" {
@@ -59,15 +60,14 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        self.view.endEditing(true)
         if indexPath.row == sets {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddSetCell", for: indexPath) as! TableViewCell
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
         cell.setNumberLabel.text = String(indexPath.row + 1)
-        self.view.endEditing(true)
-        cell.repTextfield.becomeFirstResponder()
+        firstTextField = cell.repTextfield
+        cell.repTextfield.text = ""
         return cell
     }
     
@@ -158,10 +158,10 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // Do any additional setup after loading the view.
     }
     @IBAction func addSetToTableView(_ sender: UIButton) {
-        self.view.endEditing(true)
         let path = IndexPath(row: sets, section: 0)
         sets = sets + 1
         setTableView.insertRows(at: [path], with: .right)
+        firstTextField?.becomeFirstResponder()
     }
     
     func setProfilePicture(pp: ProfilePicture) {
