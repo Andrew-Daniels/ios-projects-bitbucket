@@ -1,0 +1,6 @@
+framework module Pods_PickupGamesUITests {
+  umbrella header "Pods-PickupGamesUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
