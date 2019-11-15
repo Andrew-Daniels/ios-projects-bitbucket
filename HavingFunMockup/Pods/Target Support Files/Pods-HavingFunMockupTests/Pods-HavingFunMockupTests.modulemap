@@ -1,0 +1,6 @@
+framework module Pods_HavingFunMockupTests {
+  umbrella header "Pods-HavingFunMockupTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

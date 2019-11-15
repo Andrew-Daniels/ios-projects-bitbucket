@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 let cellIdentifier = "Cell"
-
 var profileImages: [Athlete] = []
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate {
     
     
+    @IBOutlet weak var CVView: UIView!
+    @IBOutlet weak var CVViewHeight: NSLayoutConstraint!
     @IBOutlet weak var statsHousingView: UIView!
     var searchController = UISearchController(searchResultsController: nil)
     @IBOutlet weak var dailyStatsPageView: UIView!
@@ -25,7 +28,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var filter = true
     var portraitY: CGFloat = 1000
     var landscapeY: CGFloat = 1000
-    
     
     //MARK: - UISearchBarDelegate
     
@@ -60,6 +62,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //MARK: - UICollectionViewDelegate
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        cell.contentView.alpha = 1.0
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if !filter {
             return profileImages.count
@@ -75,6 +81,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         } else {
             cell.profilePicture(pp: ProfilePicture(tag: indexPath.row, image: filteredAthletes[indexPath.row].profileImage, initials: filteredAthletes[indexPath.row].getInitials(), name: filteredAthletes[indexPath.row].name))
         }
+        cell.contentView.alpha = 0
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -136,13 +143,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panFunction(recognizer:)))
+        collectionView.addGestureRecognizer(panGesture)
+        panGesture.delegate = self
+        panGesture.cancelsTouchesInView = false
         UIApplication.shared.statusBarStyle = .default
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         profileImages.append(Athlete(name: "Selena Gomez", profileImage: #imageLiteral(resourceName: "Selena Gomez")))
         profileImages.append(Athlete(name: "Miley Cyrus", profileImage: #imageLiteral(resourceName: "Miley Cyrus")))
-        profileImages.append(Athlete(name: "Andrew Daniels", profileImage: #imageLiteral(resourceName: "Andrew Daniels")))
+        profileImages.append(Athlete(name: "Andrew Daniels", profileImage: #imageLiteral(resourceName: "IMG_2508")))
         profileImages.append(Athlete(name: "Jassi Singh", profileImage: nil))
         profileImages.append(Athlete(name: "Harrison Ford", profileImage: #imageLiteral(resourceName: "Harrison Ford")))
         profileImages.append(Athlete(name: "Samuel L. Jackson", profileImage: #imageLiteral(resourceName: "Samuel L Jackson")))
@@ -170,6 +181,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         profileImages.append(Athlete(name: "Bradley Cooper", profileImage: #imageLiteral(resourceName: "Bradley Cooper")))
         filteredAthletes = profileImages
         statsHousingView.roundCorners([.topLeft, .topRight], radius: 10)
+        
+        
         //dailyStatsPageView.layer.cornerRadius = 10
 //        setProfilePicture(pp: ProfilePicture(tag: 1, image: profileImages[1].profileImage, initials: "ACD", name: "Andrew Charles Daniels"))
         //tableView.register(UINib(nibName: "CustomHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CustomHeader")
@@ -207,15 +220,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 }
             }
         }
+        if CVViewHeight.multiplier != 0.85 {
+            CVViewHeight = CVViewHeight.setMultiplier(multiplier: 0.85)
+        }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        let orientation = UIApplication.shared.statusBarOrientation
-        setYCoords(orientation: orientation)
-        if orientation == .portrait {
-            self.view.frame.origin.y = portraitY
-        } else if orientation == .landscapeRight || orientation == .landscapeLeft {
-            self.view.frame.origin.y = landscapeY
+//        let orientation = UIApplication.shared.statusBarOrientation
+//        setYCoords(orientation: orientation)
+//        if orientation == .portrait {
+//            self.view.frame.origin.y = portraitY
+//        } else if orientation == .landscapeRight || orientation == .landscapeLeft {
+//            self.view.frame.origin.y = landscapeY
+//        }
+        if CVViewHeight.multiplier != 0.6 {
+            CVViewHeight = CVViewHeight.setMultiplier(multiplier: 0.6)
         }
     }
     
@@ -274,6 +293,40 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             layout.scrollDirection = UICollectionViewScrollDirection.vertical
         }
     }
+    
+    //MARK: PenGestureRecognizer Function
+    
+    @objc func panFunction(recognizer: UIPanGestureRecognizer) {
+        //Do something
+        if recognizer.view == nil {
+            return
+        }
+        if recognizer.state == .began {
+            //Take note of original location here
+        } else if recognizer.state == .changed {
+            //Take note of new location here
+        } else if recognizer.state == .ended {
+            
+        }
+        //print(recognizer.velocity(in: testView))
+        let velocity = recognizer.velocity(in: collectionView)
+        if velocity.y > 1000 {
+            CVViewHeight = self.CVViewHeight.setMultiplier(multiplier: 0.6)
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+        } else if velocity.y < -1500 {
+            self.view.layoutIfNeeded()
+            CVViewHeight = self.CVViewHeight.setMultiplier(multiplier: 0.85)
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 
 }
 
@@ -286,5 +339,33 @@ extension UIView {
         self.layer.mask = mask
     }
     
+}
+extension NSLayoutConstraint {
+    /**
+     Change multiplier constraint
+     
+     - parameter multiplier: CGFloat
+     - returns: NSLayoutConstraint
+     */
+    func setMultiplier(multiplier:CGFloat) -> NSLayoutConstraint {
+        
+        NSLayoutConstraint.deactivate([self])
+        
+        let newConstraint = NSLayoutConstraint(
+            item: firstItem as Any,
+            attribute: firstAttribute,
+            relatedBy: relation,
+            toItem: secondItem,
+            attribute: secondAttribute,
+            multiplier: multiplier,
+            constant: constant)
+        
+        newConstraint.priority = priority
+        newConstraint.shouldBeArchived = self.shouldBeArchived
+        newConstraint.identifier = self.identifier
+        
+        NSLayoutConstraint.activate([newConstraint])
+        return newConstraint
+    }
 }
 

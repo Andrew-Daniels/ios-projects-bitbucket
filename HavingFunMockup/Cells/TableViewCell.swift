@@ -12,6 +12,7 @@ class TableViewCell: UITableViewCell {
 
     
     
+    @IBOutlet weak var workoutName: UILabel!
     @IBOutlet weak var setNumberLabel: UILabel!
     @IBOutlet weak var repTextfield: UITextField!
     

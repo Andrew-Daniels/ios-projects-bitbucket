@@ -23,6 +23,12 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var profilePicture: ProfilePicture?
     var sets = 0
     var firstTextField: UITextField?
+    var isSaved = false
+    var isSavedRowVisible = false
+    var defaultRep = 10
+    var workoutLabel = [UILabel]()
+    var repTextFields = [UITextField]()
+    var cells = [TableViewCell]()
     
     //MARK: UITextFieldDelegate
     
@@ -31,6 +37,12 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     //MARK: - UITableViewDataSource
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.8, animations: {
+            cell.contentView.alpha = 1.0
+        })
+    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         sets = sets - 1
@@ -43,6 +55,7 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             }
             newIndexPath.row += 1
         }
+        cells.remove(at: indexPath.row)
     }
     func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
         if let firstTextField = firstTextField {
@@ -50,8 +63,11 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if tableView.cellForRow(at: indexPath)?.reuseIdentifier != "AddSetCell" {
-            return true
+        if !isSaved {
+            if tableView.cellForRow(at: indexPath)?.reuseIdentifier != "AddSetCell",
+                tableView.cellForRow(at: indexPath)?.reuseIdentifier != "Saved"{
+                return true
+            }
         }
         return false
     }
@@ -60,6 +76,12 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if isSaved {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Saved", for: indexPath) as! TableViewCell
+            isSavedRowVisible = true
+            return cell
+        }
+        
         if indexPath.row == sets {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddSetCell", for: indexPath) as! TableViewCell
             return cell
@@ -67,7 +89,13 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
         cell.setNumberLabel.text = String(indexPath.row + 1)
         firstTextField = cell.repTextfield
-        cell.repTextfield.text = ""
+        cell.repTextfield.text = String(defaultRep)
+        cell.workoutName.text = filterWorkouts(comp: components.sorted()[pickerView.selectedRow(inComponent: 0)], row: pickerView.selectedRow(inComponent: 1))
+        workoutLabel.append(cell.workoutName)
+        if !cells.contains(cell) {
+            cells.append(cell)
+        }
+        cell.contentView.alpha = 0
         return cell
     }
     
@@ -142,6 +170,11 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         if component == 0 {
             pickerView.reloadComponent(1)
         }
+        if !isSaved {
+            for label in workoutLabel {
+                label.text = filterWorkouts(comp: components.sorted()[pickerView.selectedRow(inComponent: 0)], row: pickerView.selectedRow(inComponent: 1))
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -154,14 +187,16 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         setTableView.layer.cornerRadius = 10
         setTableView.register(UINib(nibName: "CustomHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CustomHeader")
         
-        //UIApplication.shared.sendAction(#selector(resignFirstResponder), to: nil, from: nil, for: nil)
         // Do any additional setup after loading the view.
     }
     @IBAction func addSetToTableView(_ sender: UIButton) {
-        let path = IndexPath(row: sets, section: 0)
-        sets = sets + 1
-        setTableView.insertRows(at: [path], with: .right)
-        firstTextField?.becomeFirstResponder()
+        if !isSavedRowVisible {
+            let path = IndexPath(row: sets, section: 0)
+            sets = sets + 1
+            setTableView.insertRows(at: [path], with: .right)
+            firstTextField?.becomeFirstResponder()
+            firstTextField?.selectAll(nil)
+        }
     }
     
     func setProfilePicture(pp: ProfilePicture) {
@@ -181,6 +216,31 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func enableOrDisableTableCells() {
+        for cell in cells {
+            cell.repTextfield.isUserInteractionEnabled = !cell.isUserInteractionEnabled
+            cell.isUserInteractionEnabled = !cell.isUserInteractionEnabled
+        }
+    }
+    
+    @IBAction func saveSets(_ sender: UIButton) {
+        if !isSavedRowVisible {
+            let path = IndexPath(row: sets + 1, section: 0)
+            sets += 1
+            isSaved = true
+            setTableView.insertRows(at: [path], with: .right)
+            enableOrDisableTableCells()
+        }
+    }
+    @IBAction func undoButton(_ sender: UIButton) {
+        let path = IndexPath(row: sets, section: 0)
+        sets -= 1
+        setTableView.deleteRows(at: [path], with: .fade)
+        enableOrDisableTableCells()
+        isSavedRowVisible = false
+        isSaved = false
     }
     
     //MARK: - UIScrollViewDelegate

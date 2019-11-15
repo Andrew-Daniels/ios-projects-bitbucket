@@ -75,7 +75,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         if stat == "Fastest Mile" {
             vC.actualStat = "06:13:33"
             vC.initials = "ACD"
-            vC.profileImage = #imageLiteral(resourceName: "Andrew Daniels")
+            vC.profileImage = #imageLiteral(resourceName: "IMG_2508")
             vC.statType = "Fastest Mile"
         }
         if stat == "Weighted Squats" {

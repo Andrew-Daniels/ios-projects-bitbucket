@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class LoginViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -22,14 +24,23 @@ class LoginViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
 
+    @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var showHideButton: UIButton!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var ourFriendsView: UIView!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var ourFriendCollectionView: UICollectionView!
+    var ref: DatabaseReference!
+    var handler: DatabaseHandle!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
+        handler = ref.child("userId").observe(.childAdded, with: { (snapshot) in
+            if let item = snapshot.value as? String {
+                print(item)
+            }
+        })
         UIApplication.shared.statusBarStyle = .lightContent
         ourFriendsView.layer.cornerRadius = 5
         passwordView.layer.cornerRadius = 5
@@ -49,6 +60,10 @@ class LoginViewController: UIViewController, UICollectionViewDelegate, UICollect
         self.view.endEditing(true)
     }
     @IBAction func unwindSegue(segue: UIStoryboardSegue) {
+    }
+    
+    @IBAction func login(_ sender: Any) {
+        ref.child("userId").childByAutoId().setValue(usernameTextField.text)
     }
     
     /*

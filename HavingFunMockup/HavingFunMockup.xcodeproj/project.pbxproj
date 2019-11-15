@@ -9,15 +9,20 @@
 /* Begin PBXBuildFile section */
 		31169885203F930800EEAA36 /* CustomTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31169884203F930800EEAA36 /* CustomTableViewHeader.swift */; };
 		31169887203F931900EEAA36 /* CustomHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31169886203F931900EEAA36 /* CustomHeader.xib */; };
+		311BBF6D206874C400E9A625 /* AchievementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311BBF6C206874C400E9A625 /* AchievementsViewController.swift */; };
+		311BBF6F206FF0BC00E9A625 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 311BBF6E206FF0BC00E9A625 /* Assets.xcassets */; };
+		311BBF7120701DDB00E9A625 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311BBF7020701DDB00E9A625 /* TestViewController.swift */; };
 		3124A95B202E89BB00BE047B /* Push_Ups.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3124A95A202E89BB00BE047B /* Push_Ups.xib */; };
 		3124A95D202E8B3E00BE047B /* Push_Ups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3124A95C202E8B3E00BE047B /* Push_Ups.swift */; };
 		3124A96120328C6400BE047B /* ProfilePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3124A96020328C6400BE047B /* ProfilePicture.swift */; };
 		3124A9672035F61E00BE047B /* DailyStatsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3124A9662035F61E00BE047B /* DailyStatsViews.swift */; };
 		3124A9C52038B47700BE047B /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3124A9C42038B47700BE047B /* PageViewController.swift */; };
+		3150F1012058E5E5004F4E99 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3150F1002058E5E5004F4E99 /* ScheduleViewController.swift */; };
+		3150F1032058E608004F4E99 /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3150F1022058E608004F4E99 /* ScheduleCollectionViewCell.swift */; };
+		3150F1052058E619004F4E99 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3150F1042058E619004F4E99 /* ScheduleTableViewCell.swift */; };
 		315A384220251E0500F05294 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315A384120251E0500F05294 /* AppDelegate.swift */; };
 		315A384420251E0500F05294 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315A384320251E0500F05294 /* ViewController.swift */; };
 		315A384720251E0500F05294 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 315A384520251E0500F05294 /* Main.storyboard */; };
-		315A384920251E0500F05294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 315A384820251E0500F05294 /* Assets.xcassets */; };
 		315A384C20251E0500F05294 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 315A384A20251E0500F05294 /* LaunchScreen.storyboard */; };
 		315A385720251E0500F05294 /* HavingFunMockupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315A385620251E0500F05294 /* HavingFunMockupTests.swift */; };
 		315A38622025214300F05294 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315A38612025214300F05294 /* CollectionViewCell.swift */; };
@@ -25,6 +30,9 @@
 		315A387020276C4200F05294 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315A386F20276C4200F05294 /* TableViewCell.swift */; };
 		315A387B20293BC600F05294 /* Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315A387A20293BC600F05294 /* Athlete.swift */; };
 		315A387D202A1F9F00F05294 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315A387C202A1F9F00F05294 /* LoginViewController.swift */; };
+		31AE2D14207D24BC00BFA148 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31AE2D13207D24BC00BFA148 /* GoogleService-Info.plist */; };
+		6653F30BC401B758AAE54F3F /* Pods_HavingFunMockup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE3DD27468BEBE738272E23 /* Pods_HavingFunMockup.framework */; };
+		EA620A55B48969BF16A8B5C5 /* Pods_HavingFunMockupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7713CCB35ACA717FB9E1F21 /* Pods_HavingFunMockupTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,18 +46,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DE3DD27468BEBE738272E23 /* Pods_HavingFunMockup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HavingFunMockup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31169884203F930800EEAA36 /* CustomTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewHeader.swift; sourceTree = "<group>"; };
 		31169886203F931900EEAA36 /* CustomHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeader.xib; sourceTree = "<group>"; };
+		311BBF6C206874C400E9A625 /* AchievementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewController.swift; sourceTree = "<group>"; };
+		311BBF6E206FF0BC00E9A625 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		311BBF7020701DDB00E9A625 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		3124A95A202E89BB00BE047B /* Push_Ups.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Push_Ups.xib; sourceTree = "<group>"; };
 		3124A95C202E8B3E00BE047B /* Push_Ups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Push_Ups.swift; sourceTree = "<group>"; };
 		3124A96020328C6400BE047B /* ProfilePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicture.swift; sourceTree = "<group>"; };
 		3124A9662035F61E00BE047B /* DailyStatsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStatsViews.swift; sourceTree = "<group>"; };
 		3124A9C42038B47700BE047B /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		3150F1002058E5E5004F4E99 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		3150F1022058E608004F4E99 /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
+		3150F1042058E619004F4E99 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		315A383E20251E0500F05294 /* HavingFunMockup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HavingFunMockup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		315A384120251E0500F05294 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		315A384320251E0500F05294 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		315A384620251E0500F05294 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		315A384820251E0500F05294 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		315A384B20251E0500F05294 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		315A384D20251E0500F05294 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		315A385220251E0500F05294 /* HavingFunMockupTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HavingFunMockupTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +74,12 @@
 		315A386F20276C4200F05294 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		315A387A20293BC600F05294 /* Athlete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Athlete.swift; sourceTree = "<group>"; };
 		315A387C202A1F9F00F05294 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		31AE2D13207D24BC00BFA148 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4D48EA00D90769E93C0839FB /* Pods-HavingFunMockupTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HavingFunMockupTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HavingFunMockupTests/Pods-HavingFunMockupTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6A26FAE90E7D706FD3D67CF5 /* Pods-HavingFunMockup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HavingFunMockup.release.xcconfig"; path = "Pods/Target Support Files/Pods-HavingFunMockup/Pods-HavingFunMockup.release.xcconfig"; sourceTree = "<group>"; };
+		AC3B9E926253BEE70EF40A09 /* Pods-HavingFunMockupTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HavingFunMockupTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HavingFunMockupTests/Pods-HavingFunMockupTests.release.xcconfig"; sourceTree = "<group>"; };
+		D7713CCB35ACA717FB9E1F21 /* Pods_HavingFunMockupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HavingFunMockupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE03506CCB37E8462BC77CB1 /* Pods-HavingFunMockup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HavingFunMockup.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HavingFunMockup/Pods-HavingFunMockup.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6653F30BC401B758AAE54F3F /* Pods_HavingFunMockup.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,15 +95,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA620A55B48969BF16A8B5C5 /* Pods_HavingFunMockupTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		310267B348B04467B6FD4785 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0DE3DD27468BEBE738272E23 /* Pods_HavingFunMockup.framework */,
+				D7713CCB35ACA717FB9E1F21 /* Pods_HavingFunMockupTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		31169888203F932800EEAA36 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				311BBF7020701DDB00E9A625 /* TestViewController.swift */,
+				311BBF6C206874C400E9A625 /* AchievementsViewController.swift */,
+				3150F1002058E5E5004F4E99 /* ScheduleViewController.swift */,
 				3124A95C202E8B3E00BE047B /* Push_Ups.swift */,
 				315A384320251E0500F05294 /* ViewController.swift */,
 				315A3867202551F300F05294 /* SecondViewController.swift */,
@@ -105,6 +139,8 @@
 		3116988A203F939100EEAA36 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				3150F1022058E608004F4E99 /* ScheduleCollectionViewCell.swift */,
+				3150F1042058E619004F4E99 /* ScheduleTableViewCell.swift */,
 				315A38612025214300F05294 /* CollectionViewCell.swift */,
 				31169884203F930800EEAA36 /* CustomTableViewHeader.swift */,
 				315A386F20276C4200F05294 /* TableViewCell.swift */,
@@ -131,6 +167,8 @@
 				31169888203F932800EEAA36 /* ViewControllers */,
 				315A385520251E0500F05294 /* HavingFunMockupTests */,
 				315A383F20251E0500F05294 /* Products */,
+				684ACD87106DC942D1C480B0 /* Pods */,
+				310267B348B04467B6FD4785 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,10 +185,11 @@
 			isa = PBXGroup;
 			children = (
 				315A384120251E0500F05294 /* AppDelegate.swift */,
+				31AE2D13207D24BC00BFA148 /* GoogleService-Info.plist */,
 				315A384520251E0500F05294 /* Main.storyboard */,
-				315A384820251E0500F05294 /* Assets.xcassets */,
 				315A384A20251E0500F05294 /* LaunchScreen.storyboard */,
 				315A384D20251E0500F05294 /* Info.plist */,
+				311BBF6E206FF0BC00E9A625 /* Assets.xcassets */,
 			);
 			path = HavingFunMockup;
 			sourceTree = "<group>";
@@ -164,6 +203,17 @@
 			path = HavingFunMockupTests;
 			sourceTree = "<group>";
 		};
+		684ACD87106DC942D1C480B0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DE03506CCB37E8462BC77CB1 /* Pods-HavingFunMockup.debug.xcconfig */,
+				6A26FAE90E7D706FD3D67CF5 /* Pods-HavingFunMockup.release.xcconfig */,
+				4D48EA00D90769E93C0839FB /* Pods-HavingFunMockupTests.debug.xcconfig */,
+				AC3B9E926253BEE70EF40A09 /* Pods-HavingFunMockupTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -171,9 +221,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 315A385B20251E0500F05294 /* Build configuration list for PBXNativeTarget "HavingFunMockup" */;
 			buildPhases = (
+				CC5371A20003F9955B2DB7BB /* [CP] Check Pods Manifest.lock */,
 				315A383A20251E0500F05294 /* Sources */,
 				315A383B20251E0500F05294 /* Frameworks */,
 				315A383C20251E0500F05294 /* Resources */,
+				B554B93370AD0A70B516F967 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -188,9 +240,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 315A385E20251E0500F05294 /* Build configuration list for PBXNativeTarget "HavingFunMockupTests" */;
 			buildPhases = (
+				13B4CC7F0D8CC34B68C17C10 /* [CP] Check Pods Manifest.lock */,
 				315A384E20251E0500F05294 /* Sources */,
 				315A384F20251E0500F05294 /* Frameworks */,
 				315A385020251E0500F05294 /* Resources */,
+				5FB65B8CFD575C90BD3BCC15 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -250,8 +304,9 @@
 				3124A95B202E89BB00BE047B /* Push_Ups.xib in Resources */,
 				315A384C20251E0500F05294 /* LaunchScreen.storyboard in Resources */,
 				31169887203F931900EEAA36 /* CustomHeader.xib in Resources */,
-				315A384920251E0500F05294 /* Assets.xcassets in Resources */,
 				315A384720251E0500F05294 /* Main.storyboard in Resources */,
+				311BBF6F206FF0BC00E9A625 /* Assets.xcassets in Resources */,
+				31AE2D14207D24BC00BFA148 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,11 +319,97 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		13B4CC7F0D8CC34B68C17C10 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HavingFunMockupTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5FB65B8CFD575C90BD3BCC15 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HavingFunMockupTests/Pods-HavingFunMockupTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HavingFunMockupTests/Pods-HavingFunMockupTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B554B93370AD0A70B516F967 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HavingFunMockup/Pods-HavingFunMockup-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HavingFunMockup/Pods-HavingFunMockup-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC5371A20003F9955B2DB7BB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HavingFunMockup-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		315A383A20251E0500F05294 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3150F1032058E608004F4E99 /* ScheduleCollectionViewCell.swift in Sources */,
+				3150F1012058E5E5004F4E99 /* ScheduleViewController.swift in Sources */,
+				311BBF7120701DDB00E9A625 /* TestViewController.swift in Sources */,
 				315A387D202A1F9F00F05294 /* LoginViewController.swift in Sources */,
 				315A384420251E0500F05294 /* ViewController.swift in Sources */,
 				3124A9672035F61E00BE047B /* DailyStatsViews.swift in Sources */,
@@ -278,6 +419,8 @@
 				315A38622025214300F05294 /* CollectionViewCell.swift in Sources */,
 				31169885203F930800EEAA36 /* CustomTableViewHeader.swift in Sources */,
 				3124A96120328C6400BE047B /* ProfilePicture.swift in Sources */,
+				3150F1052058E619004F4E99 /* ScheduleTableViewCell.swift in Sources */,
+				311BBF6D206874C400E9A625 /* AchievementsViewController.swift in Sources */,
 				3124A9C52038B47700BE047B /* PageViewController.swift in Sources */,
 				3124A95D202E8B3E00BE047B /* Push_Ups.swift in Sources */,
 				315A387B20293BC600F05294 /* Athlete.swift in Sources */,
@@ -431,6 +574,7 @@
 		};
 		315A385C20251E0500F05294 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE03506CCB37E8462BC77CB1 /* Pods-HavingFunMockup.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -446,6 +590,7 @@
 		};
 		315A385D20251E0500F05294 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A26FAE90E7D706FD3D67CF5 /* Pods-HavingFunMockup.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -461,6 +606,7 @@
 		};
 		315A385F20251E0500F05294 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D48EA00D90769E93C0839FB /* Pods-HavingFunMockupTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -477,6 +623,7 @@
 		};
 		315A386020251E0500F05294 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC3B9E926253BEE70EF40A09 /* Pods-HavingFunMockupTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
