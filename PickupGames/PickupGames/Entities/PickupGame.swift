@@ -56,9 +56,10 @@ class PickupGame: FirebaseCodable {
         self.numberOfSubscribers = try container.decodeIfPresent(Int.self, forKey: .numberOfSubscribers)
         self.title = try container.decodeIfPresent(String.self, forKey: .title)
         self.location = try container.decodeIfPresent(Location.self, forKey: .location)
-        let firebaseDate = try container.decodeIfPresent(Double.self, forKey: .occursAtDate)
-        self.occursAtDate = firebaseDate?.dateFromFirebaseDouble()
         self.reoccurring = try container.decodeIfPresent(Bool.self, forKey: .reoccurring)
         self.sports = try container.decodeIfPresent([String].self, forKey: .sports)
+        
+        guard let firebaseDate = try container.decodeIfPresent(Double.self, forKey: .occursAtDate) else { return }
+        self.occursAtDate = Date.date(fromFirebase: firebaseDate)
     }
 }

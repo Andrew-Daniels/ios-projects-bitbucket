@@ -22,4 +22,11 @@ extension Date {
         let delta = TimeInterval(TimeZone.current.secondsFromGMT() * -1)
         return addingTimeInterval(delta)
     }
+    
+    static func date(fromFirebase value: Double) -> Date? {
+        var date: Date?
+        let timeInterval = TimeInterval(value)
+        date = Date(timeIntervalSince1970: timeInterval / 1000)
+        return date
+    }
 }

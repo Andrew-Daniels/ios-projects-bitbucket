@@ -33,8 +33,8 @@ class PickupGameSubscriber: FirebaseCodable {
         self.firstName = try container.decodeIfPresent(String.self, forKey: .firstName)
         self.lastName = try container.decodeIfPresent(String.self, forKey: .lastName)
         self.id = try container.decodeIfPresent(String.self, forKey: .id)
-        let firebaseDate = try container.decodeIfPresent(Double.self, forKey: .dateSubscribed)
-        self.dateSubscribed = firebaseDate?.dateFromFirebaseDouble()
+        guard let firebaseDate = try container.decodeIfPresent(Double.self, forKey: .dateSubscribed) else { return }
+        self.dateSubscribed = Date.date(fromFirebase: firebaseDate)
     }
     
     func encode(to encoder: Encoder) throws {

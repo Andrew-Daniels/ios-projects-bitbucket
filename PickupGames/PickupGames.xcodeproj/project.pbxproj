@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		06056E9F583511D88F72108E /* Pods_PickupGamesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6A6BEE1978D7AD5877F669 /* Pods_PickupGamesUITests.framework */; };
-		311E130D2365EA24001EF40D /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311E130C2365EA24001EF40D /* StringExtensions.swift */; };
 		31521F6223708BD600A7A96A /* FirebaseStoreLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F6123708BD600A7A96A /* FirebaseStoreLayer.swift */; };
 		31521F642377104400A7A96A /* DocumentReferenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F632377104400A7A96A /* DocumentReferenceExtensions.swift */; };
 		31521F662377106800A7A96A /* QueryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F652377106800A7A96A /* QueryExtensions.swift */; };
@@ -75,7 +74,6 @@
 		0B5605DC2C163AA8FA7D6A85 /* Pods-PickupGamesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PickupGamesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PickupGamesUITests/Pods-PickupGamesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		0DAD5FBFA8795E6888A768F8 /* Pods_PickupGamesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PickupGamesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E4AF36128E973A526F38496 /* Pods-PickupGamesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PickupGamesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PickupGamesUITests/Pods-PickupGamesUITests.release.xcconfig"; sourceTree = "<group>"; };
-		311E130C2365EA24001EF40D /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		31521F6123708BD600A7A96A /* FirebaseStoreLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStoreLayer.swift; sourceTree = "<group>"; };
 		31521F632377104400A7A96A /* DocumentReferenceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReferenceExtensions.swift; sourceTree = "<group>"; };
 		31521F652377106800A7A96A /* QueryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryExtensions.swift; sourceTree = "<group>"; };
@@ -330,7 +328,6 @@
 		31EBA6F02339B7AE00237741 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				311E130C2365EA24001EF40D /* StringExtensions.swift */,
 				31B67BF023667B2200AB726A /* DatabaseQueryExtensions.swift */,
 				31521F632377104400A7A96A /* DocumentReferenceExtensions.swift */,
 				31521F652377106800A7A96A /* QueryExtensions.swift */,
@@ -633,7 +630,6 @@
 				318E50C52363FDE0005B9397 /* EntityFactorySingleton.swift in Sources */,
 				318E50D223640541005B9397 /* PickupGameLayer.swift in Sources */,
 				31521F702379CA3B00A7A96A /* UIColorExtensions.swift in Sources */,
-				311E130D2365EA24001EF40D /* StringExtensions.swift in Sources */,
 				31521F74237A409A00A7A96A /* Layer.swift in Sources */,
 				31521F722379CC8000A7A96A /* FirebaseStorageLayer.swift in Sources */,
 				31EBA6D2233991F900237741 /* BaseViewController.swift in Sources */,
