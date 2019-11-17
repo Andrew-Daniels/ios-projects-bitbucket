@@ -9,8 +9,6 @@
 import Foundation
 
 class PickupGameLayer: FirebaseStoreLayer<PickupGame, PickupGame.Keys> {
-    typealias FirebaseCodable = PickupGame
-    typealias KeysEnum = PickupGame.Keys
     
     override init () {
         super.init()

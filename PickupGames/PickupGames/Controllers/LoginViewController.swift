@@ -35,17 +35,6 @@ class LoginViewController: BaseViewController {
                     break
                 }
         }
-        
-        self.entityFactory.pickupGames.getAll { (result) in
-            switch result {
-            case .success(let pugs):
-                print(pugs)
-                break
-            case .failure(let error):
-                print(error)
-                break
-            }
-        }
     }
     
     @IBAction func login(sender: UIButton) {
