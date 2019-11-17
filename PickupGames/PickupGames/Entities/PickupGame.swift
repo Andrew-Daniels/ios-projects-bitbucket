@@ -19,6 +19,7 @@ class PickupGame: FirebaseCodable {
     var reoccurring: Bool!
     var subscribers : [PickupGameSubscriber]!
     var location: Location!
+    var sports: [String]!
     
     public enum Keys: String, CodingKey {
         case id
@@ -30,6 +31,7 @@ class PickupGame: FirebaseCodable {
         case location
         case occursAtDate
         case reoccurring
+        case sports
     }
     
     init() {
@@ -44,6 +46,7 @@ class PickupGame: FirebaseCodable {
         try container.encodeIfPresent(occursAtDate, forKey: .occursAtDate)
         try container.encodeIfPresent(reoccurring, forKey: .reoccurring)
         try container.encodeIfPresent(location, forKey: .location)
+        try container.encodeIfPresent(sports, forKey: .sports)
     }
     
     required init(from decoder: Decoder) throws {
@@ -56,5 +59,6 @@ class PickupGame: FirebaseCodable {
         let firebaseDate = try container.decodeIfPresent(Double.self, forKey: .occursAtDate)
         self.occursAtDate = firebaseDate?.dateFromFirebaseDouble()
         self.reoccurring = try container.decodeIfPresent(Bool.self, forKey: .reoccurring)
+        self.sports = try container.decodeIfPresent([String].self, forKey: .sports)
     }
 }

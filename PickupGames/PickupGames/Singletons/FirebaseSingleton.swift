@@ -16,6 +16,7 @@ class FirebaseSingleton {
     
     static let instance = FirebaseSingleton()
     
+    public var storage: Storage!
     public var databaseRef: DatabaseReference!
     public var storageRef: StorageReference!
     public var firestore: Firestore!
@@ -24,6 +25,7 @@ class FirebaseSingleton {
         self.firestore = Firestore.firestore()
         self.databaseRef = Database.database().reference()
         self.storageRef = Storage.storage().reference()
+        self.storage = Storage.storage()
     }
     
 }

@@ -15,16 +15,16 @@ import FirebaseFirestore
 class FirebaseDbLayer<T: FirebaseCodable> {
     
     public var firebaseSingleton = FirebaseSingleton.instance
-    public var basePath: String! = nil
+    public var basePath: Path! = nil
     
     public func getBy(id: String, asyncCompleteWithObject: @escaping (T?, Error?) -> Void) {
-        firebaseSingleton.databaseRef.child(basePath.pathBuilder(replacementStrings: id)).observeSingleEventAndSingleObject(eventType: .value) { (obj: T?, error, index) in
+        firebaseSingleton.databaseRef.child(basePath.build(with: id)).observeSingleEventAndSingleObject(eventType: .value) { (obj: T?, error, index) in
             asyncCompleteWithObject(obj, error)
         }
     }
     
     public func getAll(asyncCompleteWithObjects: @escaping ([T]?, Error?) -> Void) {
-        firebaseSingleton.databaseRef.child(basePath.pathBuilder()).observeSingleEventAndArrayOfObjects(eventType: .value) { (objs: [T]?, error) in
+        firebaseSingleton.databaseRef.child(basePath.build()).observeSingleEventAndArrayOfObjects(eventType: .value) { (objs: [T]?, error) in
             asyncCompleteWithObjects(objs, error)
         }
     }
@@ -33,7 +33,7 @@ class FirebaseDbLayer<T: FirebaseCodable> {
         var returnValuesDict = [Int: T?]()
         var returnValue = [T]()
         for (index, id) in ids.enumerated() {
-            firebaseSingleton.databaseRef.child(basePath.pathBuilder(replacementStrings: id)).observeSingleEventAndSingleObject(eventType: .value, forIndex: index) { (obj: T?, error, index) in
+            firebaseSingleton.databaseRef.child(basePath.build(with: id)).observeSingleEventAndSingleObject(eventType: .value, forIndex: index) { (obj: T?, error, index) in
                 returnValuesDict[index] = obj
                 if returnValuesDict.count == ids.count {
                     for i in 0...returnValuesDict.count {
@@ -48,6 +48,6 @@ class FirebaseDbLayer<T: FirebaseCodable> {
     }
     
     public func startQuery() -> DatabaseReference {
-        return firebaseSingleton.databaseRef.child(basePath.pathBuilder())
+        return firebaseSingleton.databaseRef.child(basePath.build())
     }
 }

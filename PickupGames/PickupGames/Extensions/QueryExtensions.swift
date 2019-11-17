@@ -63,4 +63,16 @@ extension Query {
     func whereField(path: FieldPath, like: String) -> Query {
         return self.whereField(path, isGreaterThanOrEqualTo: like).whereField(path, isLessThanOrEqualTo: "\(like)\\uf8ff")
     }
+    
+    func whereField(field: String, between value: Any, andValue: Any) -> Query {
+        return self.whereField(field, isGreaterThanOrEqualTo: value).whereField(field, isLessThanOrEqualTo: andValue)
+    }
+    
+    func whereArrayField(field: String, containsAllValues: [String]) -> Query {
+        var query: Query!
+        for value in containsAllValues {
+            query = self.whereField(field, arrayContains: value)
+        }
+        return query
+    }
 }

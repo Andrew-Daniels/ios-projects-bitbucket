@@ -12,13 +12,15 @@
 		31521F6223708BD600A7A96A /* FirebaseStoreLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F6123708BD600A7A96A /* FirebaseStoreLayer.swift */; };
 		31521F642377104400A7A96A /* DocumentReferenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F632377104400A7A96A /* DocumentReferenceExtensions.swift */; };
 		31521F662377106800A7A96A /* QueryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F652377106800A7A96A /* QueryExtensions.swift */; };
-		31521F6823787BE800A7A96A /* PickupGameSubscriberLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F6723787BE800A7A96A /* PickupGameSubscriberLayer.swift */; };
 		31521F6A2378838900A7A96A /* PickupGameSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F692378838900A7A96A /* PickupGameSubscriber.swift */; };
 		31521F6C2379B5AC00A7A96A /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F6B2379B5AC00A7A96A /* DoubleExtensions.swift */; };
 		31521F6E2379BAAA00A7A96A /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F6D2379BAAA00A7A96A /* DateExtensions.swift */; };
 		31521F702379CA3B00A7A96A /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F6F2379CA3B00A7A96A /* UIColorExtensions.swift */; };
 		31521F722379CC8000A7A96A /* FirebaseStorageLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F712379CC8000A7A96A /* FirebaseStorageLayer.swift */; };
 		31521F74237A409A00A7A96A /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F73237A409A00A7A96A /* Layer.swift */; };
+		31521F8423810CEC00A7A96A /* BaseUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F8323810CEC00A7A96A /* BaseUIImageView.swift */; };
+		31521F8623810D6400A7A96A /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F8523810D6400A7A96A /* UIImageExtensions.swift */; };
+		31521F8823810DB400A7A96A /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31521F8723810DB400A7A96A /* Path.swift */; };
 		318E50C52363FDE0005B9397 /* EntityFactorySingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318E50C42363FDE0005B9397 /* EntityFactorySingleton.swift */; };
 		318E50CA2363FFDD005B9397 /* PickupGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318E50C92363FFDD005B9397 /* PickupGame.swift */; };
 		318E50CC2364017B005B9397 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318E50CB2364017B005B9397 /* Location.swift */; };
@@ -44,10 +46,7 @@
 		31EBA6E023399FA800237741 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBA6DF23399FA800237741 /* PasswordTextField.swift */; };
 		31EBA6E32339A23300237741 /* FirebaseSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBA6E22339A23300237741 /* FirebaseSingleton.swift */; };
 		31EBA6E62339B4EE00237741 /* FirebaseCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBA6E52339B4EE00237741 /* FirebaseCodable.swift */; };
-		31EBA6E92339B51900237741 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBA6E82339B51900237741 /* Operation.swift */; };
-		31EBA6EB2339B52B00237741 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBA6EA2339B52B00237741 /* Path.swift */; };
 		31EBA6ED2339B56B00237741 /* FirebaseDecodableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBA6EC2339B56B00237741 /* FirebaseDecodableDelegate.swift */; };
-		31EBA6EF2339B59000237741 /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBA6EE2339B59000237741 /* FirebaseModel.swift */; };
 		31EBA6F52339B82F00237741 /* ValidationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBA6F42339B82F00237741 /* ValidationHelper.swift */; };
 		31EBA6F72339B87B00237741 /* ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBA6F62339B87B00237741 /* ErrorHelper.swift */; };
 		31EBA6F92342CB9400237741 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EBA6F82342CB9400237741 /* LoadingViewController.swift */; };
@@ -80,13 +79,15 @@
 		31521F6123708BD600A7A96A /* FirebaseStoreLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStoreLayer.swift; sourceTree = "<group>"; };
 		31521F632377104400A7A96A /* DocumentReferenceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReferenceExtensions.swift; sourceTree = "<group>"; };
 		31521F652377106800A7A96A /* QueryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryExtensions.swift; sourceTree = "<group>"; };
-		31521F6723787BE800A7A96A /* PickupGameSubscriberLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupGameSubscriberLayer.swift; sourceTree = "<group>"; };
 		31521F692378838900A7A96A /* PickupGameSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupGameSubscriber.swift; sourceTree = "<group>"; };
 		31521F6B2379B5AC00A7A96A /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
 		31521F6D2379BAAA00A7A96A /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		31521F6F2379CA3B00A7A96A /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		31521F712379CC8000A7A96A /* FirebaseStorageLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageLayer.swift; sourceTree = "<group>"; };
 		31521F73237A409A00A7A96A /* Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
+		31521F8323810CEC00A7A96A /* BaseUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIImageView.swift; sourceTree = "<group>"; };
+		31521F8523810D6400A7A96A /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
+		31521F8723810DB400A7A96A /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		318E50C42363FDE0005B9397 /* EntityFactorySingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityFactorySingleton.swift; sourceTree = "<group>"; };
 		318E50C92363FFDD005B9397 /* PickupGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupGame.swift; sourceTree = "<group>"; };
 		318E50CB2364017B005B9397 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -118,10 +119,7 @@
 		31EBA6DF23399FA800237741 /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		31EBA6E22339A23300237741 /* FirebaseSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSingleton.swift; sourceTree = "<group>"; };
 		31EBA6E52339B4EE00237741 /* FirebaseCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCodable.swift; sourceTree = "<group>"; };
-		31EBA6E82339B51900237741 /* Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
-		31EBA6EA2339B52B00237741 /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		31EBA6EC2339B56B00237741 /* FirebaseDecodableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDecodableDelegate.swift; sourceTree = "<group>"; };
-		31EBA6EE2339B59000237741 /* FirebaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
 		31EBA6F42339B82F00237741 /* ValidationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationHelper.swift; sourceTree = "<group>"; };
 		31EBA6F62339B87B00237741 /* ErrorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHelper.swift; sourceTree = "<group>"; };
 		31EBA6F82342CB9400237741 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +159,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31521F8023810CBE00A7A96A /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				31EBA6D923399A7D00237741 /* Textfields */,
+				31521F8123810CC400A7A96A /* ImageViews */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		31521F8123810CC400A7A96A /* ImageViews */ = {
+			isa = PBXGroup;
+			children = (
+				31521F8323810CEC00A7A96A /* BaseUIImageView.swift */,
+			);
+			path = ImageViews;
+			sourceTree = "<group>";
+		};
 		318E50C62363FDEA005B9397 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,7 +202,6 @@
 				318E50D62364063B005B9397 /* UserLayer.swift */,
 				31B67BF22367F67200AB726A /* FirebaseDbLayer.swift */,
 				31521F6123708BD600A7A96A /* FirebaseStoreLayer.swift */,
-				31521F6723787BE800A7A96A /* PickupGameSubscriberLayer.swift */,
 				31521F712379CC8000A7A96A /* FirebaseStorageLayer.swift */,
 			);
 			path = Layers;
@@ -218,15 +232,14 @@
 		31EBA6982339905900237741 /* PickupGames */ = {
 			isa = PBXGroup;
 			children = (
+				31521F8023810CBE00A7A96A /* UIKit */,
 				318E50D323640599005B9397 /* Layers */,
 				318E50C82363FF66005B9397 /* Entities */,
 				318E50C62363FDEA005B9397 /* Factories */,
 				31EBA6F32339B81800237741 /* Helpers */,
 				31EBA6F02339B7AE00237741 /* Extensions */,
-				31EBA6E72339B50100237741 /* Enums */,
 				31EBA6E42339B4D200237741 /* Protocols */,
 				31EBA6E12339A1C500237741 /* Singletons */,
-				31EBA6D923399A7D00237741 /* Textfields */,
 				31EBA6CE2339909D00237741 /* Storyboards */,
 				31EBA6CD2339907C00237741 /* Models */,
 				31EBA6CC2339906800237741 /* Controllers */,
@@ -271,7 +284,7 @@
 		31EBA6CD2339907C00237741 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				31EBA6EE2339B59000237741 /* FirebaseModel.swift */,
+				31521F8723810DB400A7A96A /* Path.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -314,15 +327,6 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		31EBA6E72339B50100237741 /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				31EBA6E82339B51900237741 /* Operation.swift */,
-				31EBA6EA2339B52B00237741 /* Path.swift */,
-			);
-			path = Enums;
-			sourceTree = "<group>";
-		};
 		31EBA6F02339B7AE00237741 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +337,7 @@
 				31521F6B2379B5AC00A7A96A /* DoubleExtensions.swift */,
 				31521F6D2379BAAA00A7A96A /* DateExtensions.swift */,
 				31521F6F2379CA3B00A7A96A /* UIColorExtensions.swift */,
+				31521F8523810D6400A7A96A /* UIImageExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -602,7 +607,6 @@
 				31521F6E2379BAAA00A7A96A /* DateExtensions.swift in Sources */,
 				318E50CA2363FFDD005B9397 /* PickupGame.swift in Sources */,
 				31521F642377104400A7A96A /* DocumentReferenceExtensions.swift in Sources */,
-				31EBA6EF2339B59000237741 /* FirebaseModel.swift in Sources */,
 				31B67BF32367F67200AB726A /* FirebaseDbLayer.swift in Sources */,
 				31521F662377106800A7A96A /* QueryExtensions.swift in Sources */,
 				31EBA6E023399FA800237741 /* PasswordTextField.swift in Sources */,
@@ -613,14 +617,15 @@
 				31EBA6DD23399D8600237741 /* FirebaseAuthTextField.swift in Sources */,
 				31EBA6E62339B4EE00237741 /* FirebaseCodable.swift in Sources */,
 				318E50D0236403E0005B9397 /* User.swift in Sources */,
+				31521F8823810DB400A7A96A /* Path.swift in Sources */,
 				31EBA6F52339B82F00237741 /* ValidationHelper.swift in Sources */,
 				31EBA6F72339B87B00237741 /* ErrorHelper.swift in Sources */,
 				31521F6A2378838900A7A96A /* PickupGameSubscriber.swift in Sources */,
 				318E50CC2364017B005B9397 /* Location.swift in Sources */,
+				31521F8423810CEC00A7A96A /* BaseUIImageView.swift in Sources */,
 				31EBA6F92342CB9400237741 /* LoadingViewController.swift in Sources */,
-				31521F6823787BE800A7A96A /* PickupGameSubscriberLayer.swift in Sources */,
+				31521F8623810D6400A7A96A /* UIImageExtensions.swift in Sources */,
 				318E50D92364ADC5005B9397 /* LoginViewController.swift in Sources */,
-				31EBA6EB2339B52B00237741 /* Path.swift in Sources */,
 				31B67BF123667B2200AB726A /* DatabaseQueryExtensions.swift in Sources */,
 				31EBA69C2339905900237741 /* SceneDelegate.swift in Sources */,
 				318E50D72364063B005B9397 /* UserLayer.swift in Sources */,
@@ -629,7 +634,6 @@
 				318E50D223640541005B9397 /* PickupGameLayer.swift in Sources */,
 				31521F702379CA3B00A7A96A /* UIColorExtensions.swift in Sources */,
 				311E130D2365EA24001EF40D /* StringExtensions.swift in Sources */,
-				31EBA6E92339B51900237741 /* Operation.swift in Sources */,
 				31521F74237A409A00A7A96A /* Layer.swift in Sources */,
 				31521F722379CC8000A7A96A /* FirebaseStorageLayer.swift in Sources */,
 				31EBA6D2233991F900237741 /* BaseViewController.swift in Sources */,

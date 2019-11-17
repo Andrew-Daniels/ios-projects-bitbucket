@@ -68,8 +68,10 @@ extension DocumentReference {
     }
 }
 
-public enum FirestoreError: Error {
-    case InvalidJsonObject
-    case DecodeJsonError
-    case ObjectNotFound
+public enum FirestoreError: String, Error {
+    case InvalidJsonObject = "The data received was not in JSON format"
+    case DecodeJsonError = "JSON data was not in the expected object format"
+    case ObjectNotFound = "Could not find object at path"
+    
+    var localizedDescription: String { return NSLocalizedString(self.rawValue, comment: "") }
 }

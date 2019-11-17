@@ -14,13 +14,35 @@ class LoginViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        entityFactory.pickupGames.getBy(id: "fBMZIfj3H2XABQYysB9") { (result) in
+        
+        self.entityFactory.pickupGames.getBy(id: "2oq34JnSlTDftKmT1Jh2") { [weak self] (result) in
             switch result {
-            case .success(let pug):
-                print(pug)
+                case .success(let pugs):
+                    print(pugs)
+                    self?.entityFactory.pickupGames.subscribers(forPickupGame: pugs).getAll(asyncCompleteWithObjects: { (result) in
+                        switch result {
+                            case .success(let subs):
+                                print(subs)
+                                break
+                            case .failure(let error):
+                                print(error)
+                                break
+                        }
+                    })
+                    break
+                case .failure(let error):
+                    print(error)
+                    break
+                }
+        }
+        
+        self.entityFactory.pickupGames.getAll { (result) in
+            switch result {
+            case .success(let pugs):
+                print(pugs)
                 break
-            case .failure(let err):
-                print(err.localizedDescription)
+            case .failure(let error):
+                print(error)
                 break
             }
         }
@@ -74,9 +96,9 @@ class LoginViewController: BaseViewController {
     //
     //        let _ = self.entityFactory.pickupGames.insertOrUpdate(object: test)
             
-    //        self.entityFactory.pickupGames.getBy(id: "fBMZIfj3H2XABQYysB9A") { (pug, err) in
-    //            print(pug?.occursAtDate.toLocal())
-    //        }
+//            self.entityFactory.pickupGames.getBy(id: "fBMZIfj3H2XABQYysB9A") { (pug, err) in
+//                print(pug?.occursAtDate.toLocal())
+//            }
             
             
     //        self.entityFactory.pickupGames.getBy(id: "6Doc6vstl4R3ncJG634h") { (pug, err) in

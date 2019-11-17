@@ -8,10 +8,10 @@
 
 import Foundation
 
-class UserLayer: FirebaseStoreLayer<User> {
+class UserLayer: FirebaseStoreLayer<User, User.Keys> {
     
     override init () {
         super.init()
-        basePath = "users/{id}"
+        self.basePath.value = "users/{id}"
     }
 }

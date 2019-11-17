@@ -9,39 +9,48 @@
 import Foundation
 import Firebase
 
-class FirebaseStoreLayer<T: FirebaseCodable> {
+class FirebaseStoreLayer<T: FirebaseCodable, Keys: CodingKey> {
     
     private var firebaseSingleton = FirebaseSingleton.instance
-    private var firebaseStorageLayer: FirebaseStorageLayer<T, FirebaseStoreLayer<T>>!
-    public var basePath: String! = nil
+    public var basePath: Path!
 
     init() {
+        self.basePath = Path()
     }
     
-    func storage(obj: T) -> FirebaseStorageLayer<T, FirebaseStoreLayer<T>>? {
-        return obj.id != nil ? FirebaseStorageLayer(obj: obj, layer: self) : nil
+    convenience init(parentPath: String, forKey: CodingKey) {
+        self.init()
+        self.basePath.value = "\(parentPath)/\(forKey.stringValue)/{id}"
+    }
+    
+    func getChildLayer<ChildType: FirebaseCodable, ChildKeys: CodingKey>(forObj: T, forKey: Keys) -> FirebaseStoreLayer<ChildType, ChildKeys> {
+        return FirebaseStoreLayer<ChildType, ChildKeys>(parentPath: self.basePath.build(with: forObj.id), forKey: forKey)
+    }
+    
+    public func storage(obj: T) -> FirebaseStorageLayer<Keys>? {
+        return obj.id != nil ? FirebaseStorageLayer(parentPath: self.basePath.build(with: obj.id)) : nil
     }
     
     /// Starts the query on the collection
-    func startQuery() -> Query {
-        return firebaseSingleton.firestore.collection(basePath.pathBuilder())
+    public func startQuery() -> Query {
+        return firebaseSingleton.firestore.collection(basePath.build())
     }
     
     /// Inserts an object or updates an existing object
     /// - Parameter object: The object to be inserted or updated
-    func insertOrUpdate(object: T) -> Bool {
+    public func insertOrUpdate(object: T) -> Bool {
         if let id = object.id {
-            return firebaseSingleton.firestore.collection(basePath.pathBuilder()).document(id).setValue(value: object)
+            return firebaseSingleton.firestore.collection(basePath.build()).document(id).setValue(value: object)
         }
-        return firebaseSingleton.firestore.collection(basePath.pathBuilder()).document().setValue(value: object)
+        return firebaseSingleton.firestore.collection(basePath.build()).document().setValue(value: object)
     }
     
     /// Gets the object by it's id.
     /// - Parameters:
     ///   - id: The identification number of the object
     ///   - asyncCompleteWithObject: Returns the object or nil if it doesn't exist
-    func getBy(id: String, asyncCompleteWithObject: @escaping (Result<T, Error>) -> Void) {
-        firebaseSingleton.firestore.document(basePath.pathBuilder(replacementStrings: id)).getDocument { (result) in
+    public func getBy(id: String, asyncCompleteWithObject: @escaping (Result<T, Error>) -> Void) {
+        firebaseSingleton.firestore.document(basePath.build(with: id)).getDocument { (result) in
             asyncCompleteWithObject(result)
         }
     }
@@ -49,7 +58,7 @@ class FirebaseStoreLayer<T: FirebaseCodable> {
     /// Gets all documents within a collection
     /// - Parameter asyncCompleteWithObjects: Contains the objects or error if objects could not be found
     func getAll(asyncCompleteWithObjects: @escaping (Result<[T], Error>) -> Void) {
-        firebaseSingleton.firestore.collection(basePath.pathBuilder()).getDocuments { (result: Result<[T], Error>) in
+        firebaseSingleton.firestore.collection(basePath.build()).getDocuments { (result: Result<[T], Error>) in
             asyncCompleteWithObjects(result)
         }
     }
@@ -62,7 +71,7 @@ class FirebaseStoreLayer<T: FirebaseCodable> {
         var returnValuesDict = [Int: Result<T, Error>]()
         var returnValue = [Result<T, Error>]()
         for (index, id) in ids.enumerated() {
-            firebaseSingleton.firestore.document(basePath.pathBuilder(replacementStrings: id)).getDocument(forIndex: index) { (result: Result<T, Error>, index) in
+            firebaseSingleton.firestore.document(basePath.build(with: id)).getDocument(forIndex: index) { (result: Result<T, Error>, index) in
                 returnValuesDict[index] = result
                 if returnValuesDict.count == ids.count {
                     for i in 0...returnValuesDict.count {
@@ -82,7 +91,7 @@ class FirebaseStoreLayer<T: FirebaseCodable> {
     ///   - forIndex: the index of the object in a list of objects that are being retrieved
     ///   - asyncCompleteWithObject: Contains the object or error if the object could not be found
     func getBy(id: String, forIndex: Int, asyncCompleteWithObject: @escaping (Result<T, Error>, Int) -> Void) {
-        self.getBy(id: basePath.pathBuilder(replacementStrings: id)) { (result) in
+        self.getBy(id: basePath.build(with: id)) { (result) in
             asyncCompleteWithObject(result, forIndex)
         }
     }
@@ -91,5 +100,15 @@ class FirebaseStoreLayer<T: FirebaseCodable> {
     /// - Parameter key: the key of the collection group querying through
     func collectionGroup(key: CodingKey) -> Query {
         return firebaseSingleton.firestore.collectionGroup(key.stringValue)
+    }
+    
+    func deleteBy(id: String) {
+        self.firebaseSingleton.firestore.document(self.basePath.build(with: id)).delete()
+    }
+    
+    func deleteAllBy(ids: [String]) {
+        for id in ids {
+            self.deleteBy(id: id)
+        }
     }
 }

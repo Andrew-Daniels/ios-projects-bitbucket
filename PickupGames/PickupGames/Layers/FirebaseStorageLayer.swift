@@ -9,55 +9,62 @@
 import Foundation
 import UIKit
 
-class FirebaseStorageLayer<T: FirebaseCodable, U: FirebaseStoreLayer<T>> {
+class FirebaseStorageLayer<Keys: CodingKey> {
     
     private var firebaseSingleton = FirebaseSingleton.instance
-    private var firebaseStoreLayer: U!
-    private var obj: T!
+    private var parentPath: Path!
     
-    init(obj: T, layer: U) {
-        self.obj = obj
-        self.firebaseStoreLayer = layer
+    init(parentPath: String) {
+        self.parentPath.value = parentPath
     }
     
-//    func saveImages(atPathWithData: [String: Data]) {
-//        for (path, data) in atPathWithData {
-//            let imageRef = firebaseSingleton.storageRef.child(path)
-//            imageRef.putData(data, metadata: nil) { (metadata, err) in
-//                guard let _ = metadata else { return }
-//                imageRef.downloadURL { (url, error) in
-//                    guard let downloadUrl = url else { return }
-//
-//                }
-//            }
-//        }
-//    }
-    func insert(image: UIImage, forKey: CodingKey, forIndex: Int, asyncCompleteWithObject: @escaping (URL?, Error?, Int) -> Void) {
-        let date = Date().timeIntervalSince1970.description
-        let imageRef = firebaseSingleton.storageRef.child(self.firebaseStoreLayer.basePath.pathBuilder(replacementStrings: obj.id, "\(forKey.stringValue)_\(forIndex)_\(date)"))
-        guard let data = image.pngData() else { asyncCompleteWithObject(nil, nil, forIndex); return }
-        imageRef.putData(data, metadata: nil) { (metadata, err) in
-            imageRef.downloadURL { (url, error) in
-                asyncCompleteWithObject(url, error, forIndex)
+    func delete(image withUrl: URL, asyncCompleteWithObject: @escaping (Result<Bool, Error>) -> Void) {
+        firebaseSingleton.storage.reference(forURL: withUrl.absoluteString).delete { (err) in
+            if let err = err {
+                asyncCompleteWithObject(.failure(err))
+            } else {
+                asyncCompleteWithObject(.success(true))
             }
         }
     }
     
-    func insert(images: [UIImage], forKey: CodingKey, asyncCompleteWithObjects: @escaping ([URL?], Error?) -> Void) {
-        var returnValuesDict = [Int: URL?]()
-        var returnValue = [URL?]()
-        for (index, image) in images.enumerated() {
-            self.insert(image: image, forKey: forKey, forIndex: index) { (url, error, index) in
-                returnValuesDict[index] = url
-                if returnValuesDict.count == images.count {
-                    for i in 0...returnValuesDict.count {
-                        if let valueOptional = returnValuesDict[i], let value = valueOptional {
-                            returnValue.append(value)
-                        }
-                    }
-                    asyncCompleteWithObjects(returnValue, error)
+    func insert(image: UIImage, withQuality: UIImage.JPEGQuality, forKey: Keys, forIndex: Int, asyncCompleteWithObject: @escaping (Result<URL, Error>, Int) -> Void) {
+        let date = Date().timeIntervalSince1970.description
+        let imageRef = firebaseSingleton.storageRef.child(parentPath.build(with: "\(forKey.stringValue)_\(forIndex)_\(date)"))
+        guard let data = image.jpeg(withQuality) else { asyncCompleteWithObject(.failure(FirebaseStorageError.ImageDataParsingError), forIndex); return }
+        imageRef.putData(data, metadata: nil) { (metadata, err) in
+            imageRef.downloadURL { (url, error) in
+                if let err = error {
+                    asyncCompleteWithObject(.failure(err), forIndex)
+                } else if let url = url {
+                    asyncCompleteWithObject(.success(url), forIndex)
+                } else {
+                    asyncCompleteWithObject(.failure(FirebaseStorageError.Undefined), forIndex)
                 }
             }
         }
+    }
+    
+    func insert(images: [UIImage], withQuality: UIImage.JPEGQuality, forKey: Keys, asyncCompleteWithObjects: @escaping (Result<[(Result<URL, Error>, Int)], Error>) -> Void) {
+        var returnValuesDict = [Int: (Result<URL, Error>, Int)]()
+        var returnValue = [(Result<URL, Error>, Int)]()
+        for (index, image) in images.enumerated() {
+            self.insert(image: image, withQuality: withQuality, forKey: forKey, forIndex: index) { (result, index) in
+                returnValuesDict[index] = (result, index)
+                if returnValuesDict.count == images.count {
+                    for i in 0...returnValuesDict.count {
+                        if let value = returnValuesDict[i] {
+                            returnValue.append(value)
+                        }
+                    }
+                    asyncCompleteWithObjects(.success(returnValue))
+                }
+            }
+        }
+    }
+    
+    public enum FirebaseStorageError: Error {
+        case ImageDataParsingError
+        case Undefined
     }
 }
