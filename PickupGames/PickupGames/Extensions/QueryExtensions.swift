@@ -56,6 +56,27 @@ extension Query {
         }
     }
     
+    func parent<T: FirebaseCodable>(asyncCompletionWithObjects: @escaping (Result<[Result<T, Error>], Error>) -> Void) {
+        self.getDocuments { (snapshot, err) in
+            if let err = err {
+                asyncCompletionWithObjects(.failure(err))
+            }
+            var retDocs = [Result<T, Error>]()
+            if let documents = snapshot?.documents {
+                for doc in documents {
+                    doc.reference.parent.parent?.getDocument(asyncCompleteWithObject: { (result: Result<T, Error>) in
+                        retDocs.append(result)
+                        if retDocs.count == documents.count {
+                            asyncCompletionWithObjects(.success(retDocs))
+                        }
+                    })
+                }
+            } else {
+                asyncCompletionWithObjects(.failure(FirestoreError.ObjectNotFound))
+            }
+        }
+    }
+    
     func whereField(field: String, like: String) -> Query {
         return self.whereField(field, isGreaterThanOrEqualTo: like).whereField(field, isLessThanOrEqualTo: "\(like)\\uf8ff")
     }

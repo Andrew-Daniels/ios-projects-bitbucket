@@ -20,9 +20,9 @@ class PickupGame: FirebaseCodable {
     var subscribers : [PickupGameSubscriber]!
     var location: Location!
     var sports: [String]!
+    var ingredients: [Ingredient]!
     
     public enum Keys: String, CodingKey {
-        case id
         case numberOfAttendees
         case numberOfSubscribers
         case subscriberPartials
@@ -32,6 +32,7 @@ class PickupGame: FirebaseCodable {
         case occursAtDate
         case reoccurring
         case sports
+        case ingredients
     }
     
     init() {
@@ -51,7 +52,6 @@ class PickupGame: FirebaseCodable {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
-        self.id = try container.decodeIfPresent(String.self, forKey: .id)
         self.numberOfAttendees = try container.decodeIfPresent(Int.self, forKey: .numberOfAttendees)
         self.numberOfSubscribers = try container.decodeIfPresent(Int.self, forKey: .numberOfSubscribers)
         self.title = try container.decodeIfPresent(String.self, forKey: .title)
@@ -60,6 +60,39 @@ class PickupGame: FirebaseCodable {
         self.sports = try container.decodeIfPresent([String].self, forKey: .sports)
         
         guard let firebaseDate = try container.decodeIfPresent(Double.self, forKey: .occursAtDate) else { return }
-        self.occursAtDate = Date.date(fromFirebase: firebaseDate)
+        self.occursAtDate = Date.from(firebase: firebaseDate)
     }
+}
+
+class Ingredient: FirebaseCodable {
+    
+    var id: String!
+    var quantity: Decimal!
+    var measurement: String!
+    var name: String!
+    
+    public enum Keys: CodingKey {
+        case quantity
+        case measurement
+        case name
+    }
+    
+    init() {
+        
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encodeIfPresent(quantity, forKey: .quantity)
+        try container.encodeIfPresent(measurement, forKey: .measurement)
+        try container.encodeIfPresent(name, forKey: .name)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        self.quantity = try container.decodeIfPresent(Decimal.self, forKey: .quantity)
+        self.measurement = try container.decodeIfPresent(String.self, forKey: .measurement)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+    }
+    
 }

@@ -14,27 +14,64 @@ class LoginViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//
+//            let test = PickupGame()
+//                let loc = Location()
+//                loc.city = "Hehee"
+//                loc.state = "Whowho"
+//                loc.streetAddress = "Street"
+//                loc.zipCode = 123456
+//                test.location = loc
+//                test.numberOfAttendees = 5
+//                test.numberOfSubscribers = 2
+//                test.occursAtDate = Date()
+//                test.reoccurring = false
+//                test.title = "This is a title don't"
+//
+//        let _ = self.entityFactory.pickupGames.storage(obj: test).insert(image: UIImage(), withQuality: .highest, forKey: .sports, forIndex: 0) { (result, index) in
+//            let _ = self.entityFactory.pickupGames.insertOrUpdate(object: test)
+//        }
         
-        self.entityFactory.pickupGames.getBy(id: "2oq34JnSlTDftKmT1Jh2") { [weak self] (result) in
+        self.entityFactory.pickupGames.collectionGroup(key: .ingredients).whereField(field: "name", like: "egg").whereField("quantity", isLessThanOrEqualTo: 2).getParentDocuments { (result: Result<[Result<PickupGame, Error>], Error>) in
             switch result {
-                case .success(let pugs):
-                    print(pugs)
-                    self?.entityFactory.pickupGames.subscribers(forPickupGame: pugs).getAll(asyncCompleteWithObjects: { (result) in
-                        switch result {
-                            case .success(let subs):
-                                print(subs)
-                                break
-                            case .failure(let error):
-                                print(error)
-                                break
-                        }
-                    })
-                    break
-                case .failure(let error):
-                    print(error)
-                    break
+            case .success(let results):
+                for res in results {
+                    switch res {
+                    case .success(let pug):
+                        print(pug)
+                        break
+                    case .failure(let err):
+                        print(err)
+                        break
+                    }
                 }
+                break
+            case .failure(let error):
+                print(error)
+                break
+            }
         }
+        
+//        self.entityFactory.pickupGames.getBy(id: "2oq34JnSlTDftKmT1Jh2") { [weak self] (result) in
+//            switch result {
+//                case .success(let pugs):
+//                    print(pugs)
+//                    self?.entityFactory.pickupGames.subscribers(forPickupGame: pugs).getAll(asyncCompleteWithObjects: { (result) in
+//                        switch result {
+//                            case .success(let subs):
+//                                print(subs)
+//                                break
+//                            case .failure(let error):
+//                                print(error)
+//                                break
+//                        }
+//                    })
+//                    break
+//                case .failure(let error):
+//                    print(error)
+//                    break
+//                }
+//        }
     }
     
     @IBAction func login(sender: UIButton) {
@@ -70,20 +107,20 @@ class LoginViewController: BaseViewController {
     //                }
     //            }
     //        }
-    //        let test = PickupGame()
-    //        let loc = Location()
-    //        loc.city = "Hehee"
-    //        loc.state = "Whowho"
-    //        loc.streetAddress = "Street"
-    //        loc.zipCode = 123456
-    //        test.location = loc
-    //        test.numberOfAttendees = 5
-    //        test.numberOfSubscribers = 2
-    //        test.occursAtDate = Date()
-    //        test.reoccurring = false
-    //        test.title = "This is a title don't"
-    //
-    //        let _ = self.entityFactory.pickupGames.insertOrUpdate(object: test)
+//            let test = PickupGame()
+//            let loc = Location()
+//            loc.city = "Hehee"
+//            loc.state = "Whowho"
+//            loc.streetAddress = "Street"
+//            loc.zipCode = 123456
+//            test.location = loc
+//            test.numberOfAttendees = 5
+//            test.numberOfSubscribers = 2
+//            test.occursAtDate = Date()
+//            test.reoccurring = false
+//            test.title = "This is a title don't"
+//
+//            let _ = self.entityFactory.pickupGames.insertOrUpdate(object: test)
             
 //            self.entityFactory.pickupGames.getBy(id: "fBMZIfj3H2XABQYysB9A") { (pug, err) in
 //                print(pug?.occursAtDate.toLocal())

@@ -27,8 +27,12 @@ class FirebaseStoreLayer<T: FirebaseCodable, Keys: CodingKey> {
         return FirebaseStoreLayer<ChildType, ChildKeys>(parentPath: self.basePath.build(with: forObj.id), forKey: forKey)
     }
     
-    public func storage(obj: T) -> FirebaseStorageLayer<Keys>? {
-        return obj.id != nil ? FirebaseStorageLayer(parentPath: self.basePath.build(with: obj.id)) : nil
+    public func storage(obj: T) -> FirebaseStorageLayer<Keys> {
+        var mutableObj = obj
+        if obj.id == nil {
+            mutableObj.id = firebaseSingleton.firestore.collection(self.basePath.build()).document().documentID
+        }
+        return FirebaseStorageLayer(parentPath: self.basePath.build(with: obj.id))
     }
     
     /// Starts the query on the collection
@@ -98,7 +102,7 @@ class FirebaseStoreLayer<T: FirebaseCodable, Keys: CodingKey> {
     
     /// Search within a whole collection of groups
     /// - Parameter key: the key of the collection group querying through
-    func collectionGroup(key: CodingKey) -> Query {
+    func collectionGroup(key: Keys) -> Query {
         return firebaseSingleton.firestore.collectionGroup(key.stringValue)
     }
     
