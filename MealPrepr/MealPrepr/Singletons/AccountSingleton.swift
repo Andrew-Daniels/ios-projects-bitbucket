@@ -108,5 +108,7 @@ class AccountSingleton {
 public enum AccountError: String, Error {
     case NotAuthenticated = "Your account was not able to be authenticated with the server"
     
-    var localizedDescription: String { return NSLocalizedString(self.rawValue, comment: "") }
+    var localizedDescription: String {
+        return self.rawValue
+    }
 }
