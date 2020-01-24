@@ -16,5 +16,6 @@ struct ArticleSectionModel {
 
 struct ArticleModel {
     var articleName: String!
+    var articleSubscriberCount: Int!
     var articleImage: UIImage!
 }

@@ -26,12 +26,15 @@ class ArticleCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ArticleCollectionViewCell
-        cell.article = articleSection.articles[indexPath.row]
+        let article = articleSection.articles[indexPath.row]
+        cell.article = article
+        cell.image.image = article.articleImage
+        cell.label.text = article.articleName
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: 110)
+        return CGSize(width: (collectionView.frame.width / 1.8), height: collectionView.frame.height)
     }
     
 }

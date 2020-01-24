@@ -19,19 +19,7 @@ class ArticleTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
         self.delegate = self
         self.dataSource = self
         
-        articleSections =
-        [
-            ArticleSectionModel(sectionName: "Featured Articles", articles: [
-                ArticleModel(articleName: "Lotus Focus", articleImage: UIImage(named: "erol-ahmed-aIYFR0vbADk-unsplash")),
-                ArticleModel(articleName: "Peaceful Thoughts: How to", articleImage: UIImage(named: "harli-marten-n7a2OJDSZns-unsplash"))]),
-            ArticleSectionModel(sectionName: "Topics", articles: [
-                ArticleModel(articleName: "Peace", articleImage: UIImage(named: "sean-kong--1B_y4wGs-s-unsplash")),
-                ArticleModel(articleName: "Balance", articleImage: UIImage(named: "bekir-donmez-eofm5R5f9Kw-unsplash"))]),
-            ArticleSectionModel(sectionName: "Time to Read", articles: [
-                ArticleModel(articleName: "5 min", articleImage: UIImage(named: "verne-ho-BTfDOQLPHlc-unsplash")),
-                ArticleModel(articleName: "10 min", articleImage: UIImage(named: "brooke-cagle-4rgGY-Aa308-unsplash"))])
-        ]
-        
+        self.rowHeight = self.frame.height / 3.0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,7 +32,9 @@ class ArticleTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tbvCellIdentifier) as! ArticleTableViewCell
-        cell.articleSection = articleSections[indexPath.section]
+        let articleSection = articleSections[indexPath.section]
+        cell.articleSection = articleSection
+        cell.articleCollectionView.articleSection = articleSection
         return cell
     }
     

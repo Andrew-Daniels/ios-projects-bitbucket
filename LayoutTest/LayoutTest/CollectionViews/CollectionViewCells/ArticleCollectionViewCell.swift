@@ -13,12 +13,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var label: UILabel!
     
-    public var article: ArticleModel! {
-        didSet {
-            image?.image = article?.articleImage
-            label?.text = article?.articleName
-        }
-    }
+    public var article: ArticleModel!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)

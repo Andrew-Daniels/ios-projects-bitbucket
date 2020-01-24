@@ -21,6 +21,12 @@
 		31560C3223D3928F00561914 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31560C3123D3928F00561914 /* ArticleTableViewCell.swift */; };
 		31560C3423D3935600561914 /* ArticleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31560C3323D3935600561914 /* ArticleTableView.swift */; };
 		31560C3723D39E4E00561914 /* ArticleSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31560C3623D39E4E00561914 /* ArticleSectionModel.swift */; };
+		31560C3B23D401DD00561914 /* DailyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31560C3A23D401DD00561914 /* DailyViewController.swift */; };
+		31560C3E23D40BB000561914 /* PTTextfieldPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31560C3D23D40BB000561914 /* PTTextfieldPicker.swift */; };
+		31560C4023D7D73E00561914 /* WordScrollCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31560C3F23D7D73E00561914 /* WordScrollCollectionView.swift */; };
+		31560C4223D7D89F00561914 /* WordScrollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31560C4123D7D89F00561914 /* WordScrollCollectionViewCell.swift */; };
+		31560C4623D7D91E00561914 /* CellSizedByObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31560C4523D7D91E00561914 /* CellSizedByObject.swift */; };
+		31560C4923D917C600561914 /* AlignmentFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31560C4823D917C600561914 /* AlignmentFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +67,12 @@
 		31560C3123D3928F00561914 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		31560C3323D3935600561914 /* ArticleTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableView.swift; sourceTree = "<group>"; };
 		31560C3623D39E4E00561914 /* ArticleSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSectionModel.swift; sourceTree = "<group>"; };
+		31560C3A23D401DD00561914 /* DailyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyViewController.swift; sourceTree = "<group>"; };
+		31560C3D23D40BB000561914 /* PTTextfieldPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTTextfieldPicker.swift; sourceTree = "<group>"; };
+		31560C3F23D7D73E00561914 /* WordScrollCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordScrollCollectionView.swift; sourceTree = "<group>"; };
+		31560C4123D7D89F00561914 /* WordScrollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordScrollCollectionViewCell.swift; sourceTree = "<group>"; };
+		31560C4523D7D91E00561914 /* CellSizedByObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSizedByObject.swift; sourceTree = "<group>"; };
+		31560C4823D917C600561914 /* AlignmentFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +123,8 @@
 		31560BEF23D36EC900561914 /* LayoutTest */ = {
 			isa = PBXGroup;
 			children = (
+				31560C4323D7D8EC00561914 /* Protocols */,
+				31560C3C23D40B8800561914 /* UIControls */,
 				31560C2D23D3918400561914 /* TableViews */,
 				31560C2A23D37E8700561914 /* CollectionViews */,
 				31560C2623D372B900561914 /* ExtensionMethods */,
@@ -148,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				31560C2423D3729900561914 /* HomeViewController.swift */,
+				31560C3A23D401DD00561914 /* DailyViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -163,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				31560C2823D37E3900561914 /* ArticleCollectionViewCell.swift */,
+				31560C4123D7D89F00561914 /* WordScrollCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -170,8 +186,10 @@
 		31560C2A23D37E8700561914 /* CollectionViews */ = {
 			isa = PBXGroup;
 			children = (
+				31560C4723D9178C00561914 /* CollectionViewLayouts */,
 				31560C2723D37E1A00561914 /* CollectionViewCells */,
 				31560C2B23D37EAF00561914 /* ArticleCollectionView.swift */,
+				31560C3F23D7D73E00561914 /* WordScrollCollectionView.swift */,
 			);
 			path = CollectionViews;
 			sourceTree = "<group>";
@@ -200,6 +218,38 @@
 				31560C3623D39E4E00561914 /* ArticleSectionModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		31560C3C23D40B8800561914 /* UIControls */ = {
+			isa = PBXGroup;
+			children = (
+				31560C3D23D40BB000561914 /* PTTextfieldPicker.swift */,
+			);
+			path = UIControls;
+			sourceTree = "<group>";
+		};
+		31560C4323D7D8EC00561914 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				31560C4423D7D8F400561914 /* CollectionViewCells */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		31560C4423D7D8F400561914 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				31560C4523D7D91E00561914 /* CellSizedByObject.swift */,
+			);
+			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+		31560C4723D9178C00561914 /* CollectionViewLayouts */ = {
+			isa = PBXGroup;
+			children = (
+				31560C4823D917C600561914 /* AlignmentFlowLayout.swift */,
+			);
+			path = CollectionViewLayouts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,12 +386,18 @@
 				31560BFB23D36EC900561914 /* LayoutTest.xcdatamodeld in Sources */,
 				31560C3723D39E4E00561914 /* ArticleSectionModel.swift in Sources */,
 				31560BF123D36EC900561914 /* AppDelegate.swift in Sources */,
+				31560C4623D7D91E00561914 /* CellSizedByObject.swift in Sources */,
 				31560C2923D37E3900561914 /* ArticleCollectionViewCell.swift in Sources */,
+				31560C3E23D40BB000561914 /* PTTextfieldPicker.swift in Sources */,
+				31560C3B23D401DD00561914 /* DailyViewController.swift in Sources */,
+				31560C4923D917C600561914 /* AlignmentFlowLayout.swift in Sources */,
 				31560C3223D3928F00561914 /* ArticleTableViewCell.swift in Sources */,
+				31560C4023D7D73E00561914 /* WordScrollCollectionView.swift in Sources */,
 				31560BF323D36EC900561914 /* SceneDelegate.swift in Sources */,
 				31560C2523D3729900561914 /* HomeViewController.swift in Sources */,
 				31560C3423D3935600561914 /* ArticleTableView.swift in Sources */,
 				31560C2C23D37EAF00561914 /* ArticleCollectionView.swift in Sources */,
+				31560C4223D7D89F00561914 /* WordScrollCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,7 +577,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.LayoutTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.LayoutTestAndrew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -539,7 +595,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.LayoutTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.LayoutTestAndrew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

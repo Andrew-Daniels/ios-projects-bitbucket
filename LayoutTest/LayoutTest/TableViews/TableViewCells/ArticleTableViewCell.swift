@@ -12,12 +12,7 @@ class ArticleTableViewCell: UITableViewCell {
     
     @IBOutlet weak var articleCollectionView: ArticleCollectionView!
     
-    var articleSection: ArticleSectionModel! {
-        didSet {
-            articleCollectionView.articleSection = articleSection
-            articleCollectionView.reloadData()
-        }
-    }
+    var articleSection: ArticleSectionModel!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
