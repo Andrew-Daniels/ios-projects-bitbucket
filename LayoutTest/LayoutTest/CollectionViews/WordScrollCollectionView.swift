@@ -11,13 +11,16 @@ import UIKit
 class WordScrollCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     private let cellIdentifier = "wordListVerticalScrollCell"
+    private var contentDelegate: ContentDelegate!
     public var articleSection: ArticleSectionModel!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.delegate = self
         self.dataSource = self
-        self.collectionViewLayout = AlignmentFlowLayout()
+        let flowLayout = AlignmentFlowLayout()
+        self.collectionViewLayout = flowLayout
+        self.contentDelegate = flowLayout
         self.contentInsetAdjustmentBehavior = .always
     }
     
@@ -38,5 +41,21 @@ class WordScrollCollectionView: UICollectionView, UICollectionViewDelegate, UICo
         let article = articleSection.articles[indexPath.row]
         let cellSize = WordScrollCollectionViewCell.getSizeForCell(withObject: article)
         return CGSize(width: cellSize.width, height: cellSize.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        self.contentDelegate.reloadContent()
     }
 }

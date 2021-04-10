@@ -38,5 +38,4 @@ class DailyViewController: UIViewController {
                 ArticleModel(articleName: "Probably not", articleSubscriberCount: 32165, articleImage: UIImage(named: "verne-ho-BTfDOQLPHlc-unsplash")),
                 ArticleModel(articleName: "But it's ok", articleSubscriberCount: 32165, articleImage: UIImage(named: "verne-ho-BTfDOQLPHlc-unsplash"))])
     }
-
 }
