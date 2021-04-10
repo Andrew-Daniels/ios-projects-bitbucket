@@ -77,25 +77,19 @@ class DistanceFormTimerView: UIView {
         self.addSubview(stopClockBtn)
         self.addSubview(timerView)
         
-        var centerX = NSLayoutConstraint(item: startClockBtn!, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-        var bottom = NSLayoutConstraint(item: startClockBtn!, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottomMargin, multiplier: 1.0, constant: -50.0)
-
-        self.addConstraints([centerX, bottom])
-        
-        centerX = NSLayoutConstraint(item: stopClockBtn!, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-        bottom = NSLayoutConstraint(item: stopClockBtn!, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottomMargin, multiplier: 1.0, constant: -50.0)
-
-        self.addConstraints([centerX, bottom])
-        
-        let top = NSLayoutConstraint(item: startClockUnderView!, attribute: .top, relatedBy: .equal, toItem: startClockBtn, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        let trailing = NSLayoutConstraint(item: startClockUnderView!, attribute: .trailing, relatedBy: .equal, toItem: startClockBtn, attribute: .trailing, multiplier: 1.0, constant: -10.0)
-        
-        self.addConstraints([top, trailing])
-        
-        centerX = NSLayoutConstraint(item: timerView!, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-        let centerY = NSLayoutConstraint(item: timerView!, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: -50.0)
-        
-        self.addConstraints([centerX, centerY])
+        NSLayoutConstraint.activate([
+            startClockBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
+            startClockBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -70),
+            
+            stopClockBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
+            stopClockBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -70),
+            
+            startClockUnderView.topAnchor.constraint(equalTo: startClockBtn.bottomAnchor, constant: 0),
+            startClockUnderView.trailingAnchor.constraint(equalTo: startClockBtn.trailingAnchor, constant: -10),
+            
+            timerView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
+            timerView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -85)
+        ])
     }
     
     @objc func startClockBtnClicked(_ sender: UIButton) {

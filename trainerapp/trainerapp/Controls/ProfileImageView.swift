@@ -60,19 +60,17 @@ class ProfileImageView: UIView {
         self.addSubview(profileImageView)
         self.addSubview(initialsLabel)
         
-        var leading = NSLayoutConstraint(item: profileImageView!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
-        var trailing = NSLayoutConstraint(item: profileImageView!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0)
-        var top = NSLayoutConstraint(item: profileImageView!, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0)
-        var bottom = NSLayoutConstraint(item: profileImageView!, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        
-        self.addConstraints([leading, trailing, top, bottom])
-        
-        leading = NSLayoutConstraint(item: initialsLabel!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
-        trailing = NSLayoutConstraint(item: initialsLabel!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0)
-        top = NSLayoutConstraint(item: initialsLabel!, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0)
-        bottom = NSLayoutConstraint(item: initialsLabel!, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        
-        self.addConstraints([leading, trailing, top, bottom])
+        NSLayoutConstraint.activate([
+            profileImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            profileImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            profileImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+            profileImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+            
+            initialsLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            initialsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            initialsLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+            initialsLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+        ])
     }
     
 }

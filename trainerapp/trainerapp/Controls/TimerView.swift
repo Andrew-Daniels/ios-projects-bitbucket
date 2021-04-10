@@ -133,29 +133,21 @@ class TimerView: UIView, TimerInfoDelegate {
         self.addSubview(secLabel)
         self.addSubview(minLabel)
         
-        let centerX = NSLayoutConstraint(item: clockColonLabel!, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-        var centerY = NSLayoutConstraint(item: clockColonLabel!, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0)
-        
-        self.addConstraints([centerX, centerY])
-        
-        centerY = NSLayoutConstraint(item: actualMinutesLabel!, attribute: .centerY, relatedBy: .equal, toItem: clockColonLabel!, attribute: .centerY, multiplier: 1.0, constant: 0.0)
-        var trailing = NSLayoutConstraint(item: actualMinutesLabel!, attribute: .trailing, relatedBy: .equal, toItem: clockColonLabel!, attribute: .leading, multiplier: 1.0, constant: -2.0)
-        
-        self.addConstraints([centerY, trailing])
-        
-        centerY = NSLayoutConstraint(item: actualSecondsLabel!, attribute: .centerY, relatedBy: .equal, toItem: clockColonLabel!, attribute: .centerY, multiplier: 1.0, constant: 0.0)
-        let leading = NSLayoutConstraint(item: actualSecondsLabel!, attribute: .leading, relatedBy: .equal, toItem: clockColonLabel!, attribute: .trailing, multiplier: 1.0, constant: 2.0)
-        
-        self.addConstraints([centerY, leading])
-        
-        var top = NSLayoutConstraint(item: secLabel!, attribute: .top, relatedBy: .equal, toItem: actualSecondsLabel!, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        trailing = NSLayoutConstraint(item: secLabel!, attribute: .trailing, relatedBy: .equal, toItem: actualSecondsLabel!, attribute: .trailing, multiplier: 1.0, constant: -1.0)
-        
-        self.addConstraints([top, trailing])
-        
-        top = NSLayoutConstraint(item: minLabel!, attribute: .top, relatedBy: .equal, toItem: actualMinutesLabel!, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        trailing = NSLayoutConstraint(item: minLabel!, attribute: .trailing, relatedBy: .equal, toItem: actualMinutesLabel!, attribute: .trailing, multiplier: 1.0, constant: 1.0)
-        
-        self.addConstraints([top, trailing])
+        NSLayoutConstraint.activate([
+            clockColonLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
+            clockColonLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0),
+            
+            actualMinutesLabel.centerYAnchor.constraint(equalTo: clockColonLabel.centerYAnchor, constant: 0),
+            actualMinutesLabel.trailingAnchor.constraint(equalTo: clockColonLabel.leadingAnchor, constant: -2),
+            
+            actualSecondsLabel.centerYAnchor.constraint(equalTo: clockColonLabel.centerYAnchor, constant: 0),
+            actualSecondsLabel.leadingAnchor.constraint(equalTo: clockColonLabel.trailingAnchor, constant: 2),
+            
+            secLabel.topAnchor.constraint(equalTo: actualSecondsLabel.bottomAnchor, constant: 0),
+            secLabel.trailingAnchor.constraint(equalTo: actualSecondsLabel.trailingAnchor, constant: -1),
+            
+            minLabel.topAnchor.constraint(equalTo: actualMinutesLabel.bottomAnchor, constant: 0),
+            minLabel.trailingAnchor.constraint(equalTo: actualMinutesLabel.trailingAnchor, constant: 1)
+        ])
     }
 }

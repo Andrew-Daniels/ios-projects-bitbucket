@@ -102,22 +102,21 @@ class SessionWorkoutSelectorView: UIView, SessionWorkoutSelectorTableViewDelegat
         self.addSubview(underline)
         self.controlSuperView?.addSubview(sessionWorkoutSelectorTableView)
         
-        var centerX = NSLayoutConstraint(item: selectedWorkoutLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 1.0)
-        let centerY = NSLayoutConstraint(item: selectedWorkoutLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 1.0)
+        NSLayoutConstraint.activate([
+            selectedWorkoutLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
+            selectedWorkoutLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0),
+            
+            underline.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
+            underline.topAnchor.constraint(equalTo: selectedWorkoutLabel.bottomAnchor, constant: 0),
+            underline.heightAnchor.constraint(equalToConstant: underlineHeight),
+            underline.widthAnchor.constraint(equalToConstant: underlineWidth),
+            
+            sessionWorkoutSelectorTableView.centerXAnchor.constraint(equalTo: self.controlSuperView!.centerXAnchor, constant: 0),
+            sessionWorkoutSelectorTableView.widthAnchor.constraint(equalTo: self.controlSuperView!.widthAnchor, constant: 0),
+        ])
         
-        self.addConstraints([centerX, centerY])
-        
-        centerX = NSLayoutConstraint(item: underline, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 1.0)
-        var top = NSLayoutConstraint(item: underline, attribute: .top, relatedBy: .equal, toItem: selectedWorkoutLabel, attribute: .bottom, multiplier: 1.0, constant: 1.0)
-        let height = NSLayoutConstraint(item: underline, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: underlineHeight)
-        var width = NSLayoutConstraint(item: underline, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: underlineWidth)
-        
-        self.addConstraints([centerX, top, height, width])
-        
-        centerX = NSLayoutConstraint(item: sessionWorkoutSelectorTableView!, attribute: .centerX, relatedBy: .equal, toItem: self.controlSuperView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-        top = NSLayoutConstraint(item: sessionWorkoutSelectorTableView!, attribute: .top, relatedBy: .equal, toItem: self.controlSuperView, attribute: .topMargin, multiplier: 1.0, constant: 0.0)
+        let top = NSLayoutConstraint(item: sessionWorkoutSelectorTableView!, attribute: .top, relatedBy: .equal, toItem: self.controlSuperView, attribute: .topMargin, multiplier: 1.0, constant: 0.0)
         let bottom = NSLayoutConstraint(item: sessionWorkoutSelectorTableView!, attribute: .bottom, relatedBy: .equal, toItem: self.controlSuperView, attribute: .bottomMargin, multiplier: 1.0, constant: 0.0)
-        width = NSLayoutConstraint(item: sessionWorkoutSelectorTableView!, attribute: .width, relatedBy: .equal, toItem: self.controlSuperView, attribute: .width, multiplier: 1.0, constant: 0.0)
-        self.controlSuperView?.addConstraints([centerX, top, bottom, width])
+        self.controlSuperView?.addConstraints([top, bottom])
     }
 }
