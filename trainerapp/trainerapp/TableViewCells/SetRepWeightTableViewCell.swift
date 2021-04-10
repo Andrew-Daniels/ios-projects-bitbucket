@@ -12,6 +12,7 @@ protocol SetRepWeightTableViewCellDelegate {
     func workoutStatDidChange(workoutStat: WorkoutStat)
     func toolbarSaveClicked()
     func toolbarUndoClicked()
+    func toolbarAddSetClicked()
 }
 
 class SetRepWeightTableViewCell: UITableViewCell {
@@ -53,14 +54,52 @@ class SetRepWeightTableViewCell: UITableViewCell {
         
         let inputAccessoryView: UIView = {
             let backView = UIView()
-            backView.backgroundColor = UIColor.TRprimary
-            backView.translatesAutoresizingMaskIntoConstraints = false
+            backView.backgroundColor = UIColor.TRsecondary
+            backView.autoresizingMask = .flexibleHeight
+            backView.frame = CGRect(x: 0, y: 0, width: 0, height: 40)
             
-            let lbl = UILabel()
-            lbl.text = "test"
+            let cancelBtn = UIButton()
+            cancelBtn.setTitle("Cancel", for: .normal)
+            cancelBtn.translatesAutoresizingMaskIntoConstraints = false
+            cancelBtn.setTitleColor(UIColor.TRred, for: .normal)
+            cancelBtn.setTitleColor(UIColor.TRsecondary, for: .highlighted)
+            cancelBtn.titleLabel?.font = UIFont(name: "Futura", size: 20)
+            cancelBtn.addTarget(self, action: #selector(cancelBtnClicked), for: .touchUpInside)
             
-            backView.addSubview(lbl)
-            lbl.sizeToFit()
+            let addSetBtn = UIButton()
+            addSetBtn.setTitle("Add a Set", for: .normal)
+            addSetBtn.translatesAutoresizingMaskIntoConstraints = false
+            addSetBtn.setTitleColor(UIColor.TRfont, for: .normal)
+            addSetBtn.setTitleColor(UIColor.TRsecondary, for: .highlighted)
+            addSetBtn.titleLabel?.font = UIFont(name: "Futura", size: 20)
+            addSetBtn.addTarget(self, action: #selector(addSetBtnClicked), for: .touchUpInside)
+            addSetBtn.setImage(UIImage(named: "Add_Open")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            addSetBtn.tintColor = UIColor.TRfont
+            addSetBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+            addSetBtn.sizeToFit()
+            
+            let saveBtn = UIButton()
+            saveBtn.setTitle("Save", for: .normal)
+            saveBtn.translatesAutoresizingMaskIntoConstraints = false
+            saveBtn.setTitleColor(UIColor.TRfont, for: .normal)
+            saveBtn.setTitleColor(UIColor.TRsecondary, for: .highlighted)
+            saveBtn.titleLabel?.font = UIFont(name: "Futura", size: 20)
+            saveBtn.addTarget(self, action: #selector(saveBtnClicked), for: .touchUpInside)
+            
+            backView.addSubview(cancelBtn)
+            backView.addSubview(saveBtn)
+            backView.addSubview(addSetBtn)
+            
+            addSetBtn.centerXAnchor.constraint(equalTo: backView.centerXAnchor, constant: 0).isActive = true
+            addSetBtn.centerYAnchor.constraint(equalTo: backView.centerYAnchor, constant: 0).isActive = true
+            addSetBtn.widthAnchor.constraint(equalToConstant: addSetBtn.frame.width + 10).isActive = true
+            
+            cancelBtn.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 20).isActive = true
+            cancelBtn.centerYAnchor.constraint(equalTo: addSetBtn.centerYAnchor, constant: 0).isActive = true
+            
+            saveBtn.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -20).isActive = true
+            saveBtn.centerYAnchor.constraint(equalTo: addSetBtn.centerYAnchor, constant: 0).isActive = true
+
             return backView
         }()
         
@@ -71,7 +110,6 @@ class SetRepWeightTableViewCell: UITableViewCell {
         repsTextField.textAlignment = .center
         repsTextField.keyboardType = .numberPad
         repsTextField.inputAccessoryView = inputAccessoryView
-        repsTextField.inputAccessoryView?.sizeToFit()
         
         weightTextField = UITextField()
         weightTextField.font = UIFont(name: "Futura", size: 16.0)
@@ -79,7 +117,7 @@ class SetRepWeightTableViewCell: UITableViewCell {
         weightTextField.translatesAutoresizingMaskIntoConstraints = false
         weightTextField.textAlignment = .center
         weightTextField.keyboardType = .numberPad
-        //weightTextField.inputAccessoryView = inputAccessoryView
+        weightTextField.inputAccessoryView = inputAccessoryView
         
         controlStackView = UIStackView()
         controlStackView.addArrangedSubview(setLabel)
@@ -133,5 +171,13 @@ class SetRepWeightTableViewCell: UITableViewCell {
     
     @objc func undoBtnClicked() {
         delegate?.toolbarUndoClicked()
+    }
+    
+    @objc func cancelBtnClicked() {
+        self.endEditing(true)
+    }
+    
+    @objc func addSetBtnClicked() {
+        delegate?.toolbarAddSetClicked()
     }
 }

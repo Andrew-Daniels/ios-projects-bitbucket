@@ -20,7 +20,6 @@
 		3126FBEF25FB1FBF00B78681 /* SetRepWeightTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3126FBEE25FB1FBF00B78681 /* SetRepWeightTableView.swift */; };
 		3126FBF125FB209200B78681 /* SetRepWeightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3126FBF025FB209200B78681 /* SetRepWeightTableViewCell.swift */; };
 		3126FBF325FB224500B78681 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3126FBF225FB224500B78681 /* ProfileImageView.swift */; };
-		3144CB3425FD789600E9771E /* AddSetRepWeightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3144CB3325FD789600E9771E /* AddSetRepWeightTableViewCell.swift */; };
 		3150E42225EEF251005001E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3150E42125EEF251005001E1 /* AppDelegate.swift */; };
 		3150E42425EEF251005001E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3150E42325EEF251005001E1 /* SceneDelegate.swift */; };
 		3150E42625EEF251005001E1 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3150E42525EEF251005001E1 /* AttendanceViewController.swift */; };
@@ -92,7 +91,6 @@
 		3126FBEE25FB1FBF00B78681 /* SetRepWeightTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRepWeightTableView.swift; sourceTree = "<group>"; };
 		3126FBF025FB209200B78681 /* SetRepWeightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetRepWeightTableViewCell.swift; sourceTree = "<group>"; };
 		3126FBF225FB224500B78681 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
-		3144CB3325FD789600E9771E /* AddSetRepWeightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetRepWeightTableViewCell.swift; sourceTree = "<group>"; };
 		3150E41E25EEF251005001E1 /* trainerapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trainerapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3150E42125EEF251005001E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3150E42325EEF251005001E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -267,7 +265,6 @@
 			children = (
 				3150E46E25EF0F23005001E1 /* AttendanceTableViewCell.swift */,
 				3126FBF025FB209200B78681 /* SetRepWeightTableViewCell.swift */,
-				3144CB3325FD789600E9771E /* AddSetRepWeightTableViewCell.swift */,
 				31973B3925FFFD9A00796CC1 /* SessionWorkoutSelectorTableViewCell.swift */,
 			);
 			path = TableViewCells;
@@ -514,7 +511,6 @@
 				3150E46625EF01FF005001E1 /* AthleteLayer.swift in Sources */,
 				3150E42825EEF251005001E1 /* CalendarViewController.swift in Sources */,
 				3150E47225EF3383005001E1 /* StateControl.swift in Sources */,
-				3144CB3425FD789600E9771E /* AddSetRepWeightTableViewCell.swift in Sources */,
 				31172AC4261FCC53006AE474 /* WorkoutFormFactory.swift in Sources */,
 				3150E42625EEF251005001E1 /* AttendanceViewController.swift in Sources */,
 				3126FBE925F31ACD00B78681 /* Person.swift in Sources */,

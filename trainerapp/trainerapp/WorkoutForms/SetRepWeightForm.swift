@@ -28,9 +28,8 @@ class SetRepWeightForm: WorkoutForm, SetRepWeightTableViewDelegate {
     private var weightLabel: UILabel!
     private var headerStackView: UIStackView!
     private var underscoreView: UIView!
-    private var undoBtn: UIButton!
+    private var addSetBtn: UIButton!
     private var saveBtn: UIButton!
-    private var actionsStackView: UIStackView!
     private var setRepWeightTableView: SetRepWeightTableView!
     
     init(athlete: Athlete, withWorkoutStats: [WorkoutStat]) {
@@ -40,7 +39,7 @@ class SetRepWeightForm: WorkoutForm, SetRepWeightTableViewDelegate {
         setupViews()
         setupConstraints()
         
-        undoBtn.addTarget(self, action: #selector(undoClicked), for: .touchUpInside)
+        addSetBtn.addTarget(self, action: #selector(addSetClicked), for: .touchUpInside)
         saveBtn.addTarget(self, action: #selector(saveClicked), for: .touchUpInside)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -97,24 +96,22 @@ class SetRepWeightForm: WorkoutForm, SetRepWeightTableViewDelegate {
         headerStackView.distribution = .fillEqually
         headerStackView.spacing = 0
         
-        undoBtn = UIButton()
-        undoBtn.setTitleColor(UIColor.TRred, for: .normal)
-        undoBtn.setTitle("Undo", for: .normal)
-        undoBtn.titleLabel?.font = UIFont(name: "Futura", size: 20)
-        undoBtn.setTitleColor(UIColor.TRsecondary, for: .highlighted)
+        addSetBtn = UIButton()
+        addSetBtn.translatesAutoresizingMaskIntoConstraints = false
+        addSetBtn.setTitleColor(UIColor.TRfont, for: .normal)
+        addSetBtn.setTitle("Add a Set", for: .normal)
+        addSetBtn.titleLabel?.font = UIFont(name: "Futura", size: 20)
+        addSetBtn.setTitleColor(UIColor.TRsecondary, for: .highlighted)
+        addSetBtn.setImage(UIImage(named: "Add_Open")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        addSetBtn.tintColor = UIColor.TRfont
+        addSetBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        addSetBtn.sizeToFit()
         saveBtn = UIButton()
+        saveBtn.translatesAutoresizingMaskIntoConstraints = false
         saveBtn.setTitleColor(UIColor.TRfont, for: .normal)
         saveBtn.setTitle("Save", for: .normal)
         saveBtn.setTitleColor(UIColor.TRsecondary, for: .highlighted)
         saveBtn.titleLabel?.font = UIFont(name: "Futura", size: 20)
-        
-        actionsStackView = UIStackView()
-        actionsStackView.addArrangedSubview(undoBtn)
-        actionsStackView.addArrangedSubview(saveBtn)
-        actionsStackView.axis = .horizontal
-        actionsStackView.translatesAutoresizingMaskIntoConstraints = false
-        actionsStackView.distribution = .equalSpacing
-        actionsStackView.spacing = 0
         
         underscoreView = UIView()
         underscoreView.backgroundColor = UIColor.TRfont
@@ -132,7 +129,8 @@ class SetRepWeightForm: WorkoutForm, SetRepWeightTableViewDelegate {
         self.addSubview(headerStackView)
         self.addSubview(underscoreView)
         self.addSubview(setRepWeightTableView)
-        self.addSubview(actionsStackView)
+        self.addSubview(addSetBtn)
+        self.addSubview(saveBtn)
         
         NSLayoutConstraint.activate([
             profileImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 50),
@@ -155,11 +153,15 @@ class SetRepWeightForm: WorkoutForm, SetRepWeightTableViewDelegate {
             setRepWeightTableView.leadingAnchor.constraint(equalTo: underscoreView.leadingAnchor, constant: 0),
             setRepWeightTableView.trailingAnchor.constraint(equalTo: underscoreView.trailingAnchor, constant: 0),
             setRepWeightTableView.topAnchor.constraint(equalTo: underscoreView.bottomAnchor, constant: 0),
-            setRepWeightTableView.bottomAnchor.constraint(equalTo: actionsStackView.topAnchor, constant: 5),
+            setRepWeightTableView.bottomAnchor.constraint(equalTo: addSetBtn.topAnchor, constant: 5),
             
-            actionsStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 55),
-            actionsStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-            actionsStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -55),
+            addSetBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
+            addSetBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            addSetBtn.widthAnchor.constraint(equalToConstant: addSetBtn.frame.width + 10),
+            addSetBtn.centerYAnchor.constraint(equalTo: saveBtn.centerYAnchor, constant: 0),
+            
+            saveBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            saveBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
         ])
     }
     
@@ -171,12 +173,16 @@ class SetRepWeightForm: WorkoutForm, SetRepWeightTableViewDelegate {
         delegate?.saveWorkout(onAthlete: athlete, withWorkoutStats: workoutStats)
     }
     
+    @objc func addSetClicked(_ sender: UIButton) {
+        self.setRepWeightTableView.addSet()
+    }
+    
     func toolbarSaveClicked() {
         saveClicked(saveBtn)
     }
     
     func toolbarUndoClicked() {
-        undoClicked(undoBtn)
+        undoClicked(addSetBtn)
     }
     
     func addSet(set: WorkoutStat) {

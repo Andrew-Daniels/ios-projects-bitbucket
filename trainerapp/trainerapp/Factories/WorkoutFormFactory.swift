@@ -18,7 +18,7 @@ struct WorkoutFormFactory {
             guard let focusedAthlete = focusedAthlete else { return workoutFormToReturn }
             workoutFormToReturn = SetRepWeightForm(athlete: focusedAthlete, withWorkoutStats: session?.loggedWorkouts?.first(where: { (sessionWorkout) -> Bool in
                 return sessionWorkout.athleteId == focusedAthlete.id && sessionWorkout.workoutTypeId == focusedWorkout.id
-            })?.workoutStats.sorted(by: { (left, right) -> Bool in
+            })?.workoutStats?.sorted(by: { (left, right) -> Bool in
                 return left.set < right.set
             }) ?? [])
             break

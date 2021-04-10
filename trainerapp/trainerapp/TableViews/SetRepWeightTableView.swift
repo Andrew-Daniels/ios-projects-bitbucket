@@ -14,10 +14,9 @@ protocol SetRepWeightTableViewDelegate {
     func toolbarUndoClicked()
 }
 
-class SetRepWeightTableView: UITableView, UITableViewDelegate, UITableViewDataSource, AddSetRepWeightTableViewCellDelegate, SetRepWeightTableViewCellDelegate {
+class SetRepWeightTableView: UITableView, UITableViewDelegate, UITableViewDataSource, SetRepWeightTableViewCellDelegate {
     
     private var cellIdentifier = "SetRepWeightCell"
-    private var addCellIdentifier = "AddSetRepWeightCell"
     var workoutStats: [WorkoutStat]!
     var controlDelegate: SetRepWeightTableViewDelegate?
     
@@ -28,7 +27,6 @@ class SetRepWeightTableView: UITableView, UITableViewDelegate, UITableViewDataSo
         self.delegate = self
         self.dataSource = self
         self.register(SetRepWeightTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        self.register(AddSetRepWeightTableViewCell.self, forCellReuseIdentifier: addCellIdentifier)
         self.keyboardDismissMode = .onDrag
         self.delaysContentTouches = false
         self.showsVerticalScrollIndicator = true
@@ -39,17 +37,12 @@ class SetRepWeightTableView: UITableView, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (workoutStats?.count ?? 0) + 1
+        return workoutStats?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if workoutStats?.count ?? 0 > indexPath.row {
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! SetRepWeightTableViewCell
-            cell.workoutStat = workoutStats?[indexPath.row]
-            cell.delegate = self
-            return cell
-        }
-        let cell = tableView.dequeueReusableCell(withIdentifier: addCellIdentifier) as! AddSetRepWeightTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! SetRepWeightTableViewCell
+        cell.workoutStat = workoutStats?[indexPath.row]
         cell.delegate = self
         return cell
     }
@@ -82,5 +75,9 @@ class SetRepWeightTableView: UITableView, UITableViewDelegate, UITableViewDataSo
     
     func toolbarUndoClicked() {
         controlDelegate?.toolbarUndoClicked()
+    }
+    
+    func toolbarAddSetClicked() {
+        addSet()
     }
 }
