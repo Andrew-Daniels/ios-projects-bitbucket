@@ -34,7 +34,8 @@ class SomeStoreLayer<T: SomeCodable, Keys: CodingKey> {
         ]
         trainer = Trainer()
         trainer.id = UUID().uuidString
-        trainer.firstName = "Andre Giant"
+        trainer.firstName = "Andre"
+        trainer.lastName = "Giant"
         
         var workoutType1 = WorkoutType()
         workoutType1.id = UUID().uuidString
@@ -109,7 +110,9 @@ class SomeStoreLayer<T: SomeCodable, Keys: CodingKey> {
     ///   - id: The identification number of the object
     ///   - asyncCompleteWithObject: Returns the object or nil if it doesn't exist
     public func getBy(id: String, asyncCompleteWithObject: @escaping (Result<T, Error>) -> Void) {
-        asyncCompleteWithObject(.success(T()))
+        if (T() is Trainer) {
+            asyncCompleteWithObject(.success(trainer as! T))
+        }
     }
     
     /// Gets all documents within a collection

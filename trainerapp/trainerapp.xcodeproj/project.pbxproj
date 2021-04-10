@@ -10,6 +10,8 @@
 		31172ABF2617E642006AE474 /* DistanceFormTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31172ABE2617E642006AE474 /* DistanceFormTimerView.swift */; };
 		31172AC4261FCC53006AE474 /* WorkoutFormFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31172AC3261FCC53006AE474 /* WorkoutFormFactory.swift */; };
 		31172AC9261FCFBC006AE474 /* WorkoutForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31172AC8261FCFBC006AE474 /* WorkoutForm.swift */; };
+		31172ACE26215371006AE474 /* ProfileSettingsSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31172ACD26215371006AE474 /* ProfileSettingsSelectorView.swift */; };
+		31172AD32621582A006AE474 /* TrainerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31172AD22621582A006AE474 /* TrainerLayer.swift */; };
 		3126FBE325F3143400B78681 /* WorkoutStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3126FBE225F3143400B78681 /* WorkoutStat.swift */; };
 		3126FBE525F31A3400B78681 /* SessionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3126FBE425F31A3400B78681 /* SessionLayer.swift */; };
 		3126FBE725F31AAC00B78681 /* Trainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3126FBE625F31AAC00B78681 /* Trainer.swift */; };
@@ -80,6 +82,8 @@
 		31172ABE2617E642006AE474 /* DistanceFormTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceFormTimerView.swift; sourceTree = "<group>"; };
 		31172AC3261FCC53006AE474 /* WorkoutFormFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutFormFactory.swift; sourceTree = "<group>"; };
 		31172AC8261FCFBC006AE474 /* WorkoutForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutForm.swift; sourceTree = "<group>"; };
+		31172ACD26215371006AE474 /* ProfileSettingsSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsSelectorView.swift; sourceTree = "<group>"; };
+		31172AD22621582A006AE474 /* TrainerLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerLayer.swift; sourceTree = "<group>"; };
 		3126FBE225F3143400B78681 /* WorkoutStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutStat.swift; sourceTree = "<group>"; };
 		3126FBE425F31A3400B78681 /* SessionLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionLayer.swift; sourceTree = "<group>"; };
 		3126FBE625F31AAC00B78681 /* Trainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trainer.swift; sourceTree = "<group>"; };
@@ -298,6 +302,7 @@
 				3150E46525EF01FF005001E1 /* AthleteLayer.swift */,
 				3150E46725EF0252005001E1 /* SomeStoreLayer.swift */,
 				3126FBE425F31A3400B78681 /* SessionLayer.swift */,
+				31172AD22621582A006AE474 /* TrainerLayer.swift */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 				3126FBF225FB224500B78681 /* ProfileImageView.swift */,
 				318EF2EA2607A2D300BFC288 /* TimerView.swift */,
 				31172ABE2617E642006AE474 /* DistanceFormTimerView.swift */,
+				31172ACD26215371006AE474 /* ProfileSettingsSelectorView.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -501,6 +507,7 @@
 				3150E47E25F185C4005001E1 /* Animator.swift in Sources */,
 				3150E48A25F28B20005001E1 /* SessionWorkout.swift in Sources */,
 				3150E45F25EEFF88005001E1 /* AttendenceTableViewType.swift in Sources */,
+				31172ACE26215371006AE474 /* ProfileSettingsSelectorView.swift in Sources */,
 				3150E45A25EEFA35005001E1 /* AttendanceTableView.swift in Sources */,
 				3150E42E25EEF251005001E1 /* trainerapp.xcdatamodeld in Sources */,
 				318EF2EB2607A2D300BFC288 /* TimerView.swift in Sources */,
@@ -538,6 +545,7 @@
 				31973B3525FFFCB300796CC1 /* SessionWorkoutSelectorTableView.swift in Sources */,
 				3150E45D25EEFAC3005001E1 /* Athlete.swift in Sources */,
 				3126FBE525F31A3400B78681 /* SessionLayer.swift in Sources */,
+				31172AD32621582A006AE474 /* TrainerLayer.swift in Sources */,
 				3150E47525EF3444005001E1 /* UIColorExtensions.swift in Sources */,
 				3150E48425F19215005001E1 /* AthleteSelectorCollectionViewCell.swift in Sources */,
 				31973B4B2602AD0800796CC1 /* TimerManagerSingleton.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AttendanceViewController: UIViewController {
+class AttendanceViewController: UIViewController, ProfileSettingsSelectorDelegate {
     
     @IBOutlet weak var currentClassTableView: AttendanceTableView!
     @IBOutlet weak var allAthletesTableView: AttendanceTableView!
@@ -16,6 +16,20 @@ class AttendanceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        EntityFactorySingleton.instance.trainers.getBy(id: "", asyncCompleteWithObject: { (result) in
+            switch (result) {
+            case .success(let trainer):
+                let profileSettingsSelectorView = ProfileSettingsSelectorView(trainer: trainer, superview: self.view)
+                profileSettingsSelectorView.delegate = self
+                self.navigationItem.titleView = profileSettingsSelectorView
+                break
+            case .failure(let err):
+                print(err)
+                break
+            }
+        })
+        
         currentClassTableView.setup(type: .CurrentClass)
         allAthletesTableView.setup(type: .All)
     }

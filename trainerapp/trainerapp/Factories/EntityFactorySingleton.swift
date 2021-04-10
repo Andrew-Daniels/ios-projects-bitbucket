@@ -14,9 +14,11 @@ struct EntityFactorySingleton {
     
     public var athletes: AthleteLayer!
     public var sessions: SessionLayer!
+    public var trainers: TrainerLayer!
     
     private init() {
         self.athletes = AthleteLayer()
         self.sessions = SessionLayer()
+        self.trainers = TrainerLayer()
     }
 }
