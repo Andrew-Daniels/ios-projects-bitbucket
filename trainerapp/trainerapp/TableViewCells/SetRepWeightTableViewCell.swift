@@ -20,8 +20,8 @@ class SetRepWeightTableViewCell: UITableViewCell {
     public var workoutStat: WorkoutStat! {
         didSet {
             setLabel.text = String(workoutStat.set)
-            repsTextField.text = String(workoutStat.reps ?? 10)
-            weightTextField.text = String(workoutStat.weight ?? 0)
+            repsTextField.text = workoutStat.reps == nil ? "" : String(workoutStat.reps)
+            weightTextField.text = workoutStat.weight == nil ? "" : String(workoutStat.weight ?? 0)
         }
     }
     
