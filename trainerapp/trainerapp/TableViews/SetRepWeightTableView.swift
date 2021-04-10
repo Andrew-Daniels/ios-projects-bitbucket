@@ -12,6 +12,7 @@ protocol SetRepWeightTableViewDelegate {
     func addSet(set: WorkoutStat)
     func toolbarSaveClicked()
     func toolbarUndoClicked()
+    func deleteSet(set: Int)
 }
 
 class SetRepWeightTableView: UITableView, UITableViewDelegate, UITableViewDataSource, SetRepWeightTableViewCellDelegate {
@@ -47,6 +48,20 @@ class SetRepWeightTableView: UITableView, UITableViewDelegate, UITableViewDataSo
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        
+        deleteSet(atIndex: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
     func addSet() {
         var newSet = WorkoutStat()
         newSet.set = (workoutStats?.count ?? 0) + 1
@@ -79,5 +94,17 @@ class SetRepWeightTableView: UITableView, UITableViewDelegate, UITableViewDataSo
     
     func toolbarAddSetClicked() {
         addSet()
+    }
+    
+    func deleteSet(atIndex: IndexPath) {
+        workoutStats = workoutStats.compactMap { ws in
+            if ws.set == atIndex.row + 1 { self.controlDelegate?.deleteSet(set: ws.set); return nil }
+            if ws.set < atIndex.row + 1 { return ws }
+            var newWs = ws
+            newWs.set -= 1
+            return newWs
+        }
+        self.deleteRows(at: [atIndex], with: .left)
+        self.reloadData()
     }
 }

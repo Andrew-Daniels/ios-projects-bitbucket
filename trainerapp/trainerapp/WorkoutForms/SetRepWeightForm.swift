@@ -193,6 +193,17 @@ class SetRepWeightForm: WorkoutForm, SetRepWeightTableViewDelegate {
         delegate?.changesMadeToWorkout(onAthlete: athlete)
     }
     
+    func deleteSet(set: Int) {
+        self.workoutStats = self.workoutStats.compactMap { ws in
+            if ws.set == set { return nil }
+            if ws.set < set { return ws }
+            var newWs = ws
+            newWs.set -= 1
+            return newWs
+        }
+        delegate?.changesMadeToWorkout(onAthlete: athlete)
+    }
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         // Get required info out of the notification
         if let scrollView = self.setRepWeightTableView, let userInfo = notification.userInfo, let endValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey], let durationValue = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey], let curveValue = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] {
