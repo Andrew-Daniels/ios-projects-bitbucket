@@ -28,6 +28,7 @@ class SetRepWeightForm: WorkoutForm, SetRepWeightTableViewDelegate {
     private var weightLabel: UILabel!
     private var headerStackView: UIStackView!
     private var underscoreView: UIView!
+    private var bottomToolbar: UIView!
     private var addSetBtn: UIButton!
     private var saveBtn: UIButton!
     private var setRepWeightTableView: SetRepWeightTableView!
@@ -96,6 +97,10 @@ class SetRepWeightForm: WorkoutForm, SetRepWeightTableViewDelegate {
         headerStackView.distribution = .fillEqually
         headerStackView.spacing = 0
         
+        bottomToolbar = UIView()
+        bottomToolbar.translatesAutoresizingMaskIntoConstraints = false
+        bottomToolbar.backgroundColor = UIColor.TRsecondary
+        
         addSetBtn = UIButton()
         addSetBtn.translatesAutoresizingMaskIntoConstraints = false
         addSetBtn.setTitleColor(UIColor.TRfont, for: .normal)
@@ -129,8 +134,9 @@ class SetRepWeightForm: WorkoutForm, SetRepWeightTableViewDelegate {
         self.addSubview(headerStackView)
         self.addSubview(underscoreView)
         self.addSubview(setRepWeightTableView)
-        self.addSubview(addSetBtn)
-        self.addSubview(saveBtn)
+        self.addSubview(bottomToolbar)
+        self.bottomToolbar.addSubview(addSetBtn)
+        self.bottomToolbar.addSubview(saveBtn)
         
         NSLayoutConstraint.activate([
             profileImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 50),
@@ -155,13 +161,18 @@ class SetRepWeightForm: WorkoutForm, SetRepWeightTableViewDelegate {
             setRepWeightTableView.topAnchor.constraint(equalTo: underscoreView.bottomAnchor, constant: 0),
             setRepWeightTableView.bottomAnchor.constraint(equalTo: addSetBtn.topAnchor, constant: 5),
             
-            addSetBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
-            addSetBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            bottomToolbar.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+            bottomToolbar.heightAnchor.constraint(equalToConstant: 44),
+            bottomToolbar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            bottomToolbar.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            
+            addSetBtn.centerXAnchor.constraint(equalTo: self.bottomToolbar.centerXAnchor, constant: 0),
             addSetBtn.widthAnchor.constraint(equalToConstant: addSetBtn.frame.width + 10),
             addSetBtn.centerYAnchor.constraint(equalTo: saveBtn.centerYAnchor, constant: 0),
             
-            saveBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            saveBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            saveBtn.trailingAnchor.constraint(equalTo: self.bottomToolbar.trailingAnchor, constant: -20),
+            saveBtn.bottomAnchor.constraint(equalTo: self.bottomToolbar.bottomAnchor, constant: 0),
+            saveBtn.centerYAnchor.constraint(equalTo: self.bottomToolbar.centerYAnchor, constant: 0)
         ])
     }
     
