@@ -13,6 +13,7 @@ class SomeStoreLayer<T: SomeCodable, Keys: CodingKey> {
     public var athletes: [Athlete]!
     public var session: Session!
     public var workoutTypes: [WorkoutType]!
+    //public var settings: [Setting]!
     public var workout: SessionWorkout!
     public var trainer: Trainer!
     

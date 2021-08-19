@@ -54,6 +54,10 @@
 		318EF2F32609608A00BFC288 /* CompletionAthleteSelectorCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318EF2F22609608A00BFC288 /* CompletionAthleteSelectorCollectionViewController.swift */; };
 		318EF2F8260961A000BFC288 /* CompletionAthleteSelectorCollectionViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318EF2F7260961A000BFC288 /* CompletionAthleteSelectorCollectionViewType.swift */; };
 		318EF2FD2609625400BFC288 /* CompletionAthleteSelectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318EF2FC2609625400BFC288 /* CompletionAthleteSelectorCollectionViewCell.swift */; };
+		3194CCF926C0490F00DA059E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194CCF826C0490F00DA059E /* SettingsViewController.swift */; };
+		3194CCFE26C04A8400DA059E /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194CCFD26C04A8400DA059E /* SettingsTableView.swift */; };
+		3194CD0626C04CB200DA059E /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194CD0526C04CB200DA059E /* SettingsTableViewCell.swift */; };
+		3194CD0B26C098A500DA059E /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194CD0A26C098A500DA059E /* SettingModel.swift */; };
 		31973B3525FFFCB300796CC1 /* SessionWorkoutSelectorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31973B3425FFFCB300796CC1 /* SessionWorkoutSelectorTableView.swift */; };
 		31973B3A25FFFD9A00796CC1 /* SessionWorkoutSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31973B3925FFFD9A00796CC1 /* SessionWorkoutSelectorTableViewCell.swift */; };
 		31973B40260189FE00796CC1 /* DistanceForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31973B3F260189FE00796CC1 /* DistanceForm.swift */; };
@@ -131,6 +135,10 @@
 		318EF2F22609608A00BFC288 /* CompletionAthleteSelectorCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionAthleteSelectorCollectionViewController.swift; sourceTree = "<group>"; };
 		318EF2F7260961A000BFC288 /* CompletionAthleteSelectorCollectionViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionAthleteSelectorCollectionViewType.swift; sourceTree = "<group>"; };
 		318EF2FC2609625400BFC288 /* CompletionAthleteSelectorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionAthleteSelectorCollectionViewCell.swift; sourceTree = "<group>"; };
+		3194CCF826C0490F00DA059E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3194CCFD26C04A8400DA059E /* SettingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
+		3194CD0526C04CB200DA059E /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		3194CD0A26C098A500DA059E /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		31973B3425FFFCB300796CC1 /* SessionWorkoutSelectorTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionWorkoutSelectorTableView.swift; sourceTree = "<group>"; };
 		31973B3925FFFD9A00796CC1 /* SessionWorkoutSelectorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionWorkoutSelectorTableViewCell.swift; sourceTree = "<group>"; };
 		31973B3F260189FE00796CC1 /* DistanceForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceForm.swift; sourceTree = "<group>"; };
@@ -234,6 +242,7 @@
 				3150E42725EEF251005001E1 /* CalendarViewController.swift */,
 				3150E42525EEF251005001E1 /* AttendanceViewController.swift */,
 				3150E47A25F0630C005001E1 /* SessionViewController.swift */,
+				3194CCF826C0490F00DA059E /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -246,6 +255,7 @@
 				3150E47625F01781005001E1 /* AthleteModel.swift */,
 				31973B4A2602AD0800796CC1 /* TimerManagerSingleton.swift */,
 				318EF2F7260961A000BFC288 /* CompletionAthleteSelectorCollectionViewType.swift */,
+				3194CD0A26C098A500DA059E /* SettingModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -256,6 +266,7 @@
 				3150E45925EEFA35005001E1 /* AttendanceTableView.swift */,
 				3126FBEE25FB1FBF00B78681 /* SetRepWeightTableView.swift */,
 				31973B3425FFFCB300796CC1 /* SessionWorkoutSelectorTableView.swift */,
+				3194CCFD26C04A8400DA059E /* SettingsTableView.swift */,
 			);
 			path = TableViews;
 			sourceTree = "<group>";
@@ -266,6 +277,7 @@
 				3150E46E25EF0F23005001E1 /* AttendanceTableViewCell.swift */,
 				3126FBF025FB209200B78681 /* SetRepWeightTableViewCell.swift */,
 				31973B3925FFFD9A00796CC1 /* SessionWorkoutSelectorTableViewCell.swift */,
+				3194CD0526C04CB200DA059E /* SettingsTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -500,10 +512,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3194CD0B26C098A500DA059E /* SettingModel.swift in Sources */,
 				31172AC9261FCFBC006AE474 /* WorkoutForm.swift in Sources */,
 				3150E47E25F185C4005001E1 /* Animator.swift in Sources */,
 				3150E48A25F28B20005001E1 /* SessionWorkout.swift in Sources */,
 				3150E45F25EEFF88005001E1 /* AttendenceTableViewType.swift in Sources */,
+				3194CD0626C04CB200DA059E /* SettingsTableViewCell.swift in Sources */,
 				31172ACE26215371006AE474 /* ProfileSettingsSelectorView.swift in Sources */,
 				3150E45A25EEFA35005001E1 /* AttendanceTableView.swift in Sources */,
 				3150E42E25EEF251005001E1 /* trainerapp.xcdatamodeld in Sources */,
@@ -526,6 +540,7 @@
 				3150E42225EEF251005001E1 /* AppDelegate.swift in Sources */,
 				3126FBEF25FB1FBF00B78681 /* SetRepWeightTableView.swift in Sources */,
 				318EF2FD2609625400BFC288 /* CompletionAthleteSelectorCollectionViewCell.swift in Sources */,
+				3194CCF926C0490F00DA059E /* SettingsViewController.swift in Sources */,
 				3126FBED25F573CA00B78681 /* SetRepWeightForm.swift in Sources */,
 				3126FBE725F31AAC00B78681 /* Trainer.swift in Sources */,
 				3150E46D25EF04B9005001E1 /* Path.swift in Sources */,
@@ -543,6 +558,7 @@
 				3126FBE525F31A3400B78681 /* SessionLayer.swift in Sources */,
 				31172AD32621582A006AE474 /* TrainerLayer.swift in Sources */,
 				3150E47525EF3444005001E1 /* UIColorExtensions.swift in Sources */,
+				3194CCFE26C04A8400DA059E /* SettingsTableView.swift in Sources */,
 				3150E48425F19215005001E1 /* AthleteSelectorCollectionViewCell.swift in Sources */,
 				31973B4B2602AD0800796CC1 /* TimerManagerSingleton.swift in Sources */,
 				318EF2F32609608A00BFC288 /* CompletionAthleteSelectorCollectionViewController.swift in Sources */,

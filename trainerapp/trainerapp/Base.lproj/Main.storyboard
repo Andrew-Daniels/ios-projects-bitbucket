@@ -276,10 +276,10 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Athlete" id="AwV-0r-cbB" customClass="AthleteSelectorCollectionViewCell" customModule="trainerapp" customModuleProvider="target">
-                                        <rect key="frame" x="12.666666666666666" y="12.666666666666666" width="59.999999999999993" height="95"/>
+                                        <rect key="frame" x="12.666666666666666" y="12.666666666666666" width="59.999999999999986" height="95"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="efE-vL-mbq">
-                                            <rect key="frame" x="0.0" y="0.0" width="59.999999999999993" height="95"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="59.999999999999986" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5gn-Vh-Khi">
@@ -414,7 +414,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="1659.4202898550725" y="359.59821428571428"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="TgD-a3-5vg">
+            <objects>
+                <viewController title="Settings" id="MmA-t2-oB2" customClass="SettingsViewController" customModule="trainerapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Ml-hC-9rt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hk7-xH-gik"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="1n1-7g-zzA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B87-O8-Ix8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="910.14492753623199" y="868.52678571428567"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -429,6 +445,7 @@
                     <connections>
                         <segue destination="glP-0a-7T0" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="5Lv-99-9tR" kind="relationship" relationship="viewControllers" id="whG-Zw-4gu"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -460,6 +477,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2c6-bX-6ct" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749.27536231884062" y="-320.08928571428572"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="wKf-h7-G7d">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Lv-99-9tR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" id="T4t-l2-BQ1"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="psp-i1-u1a">
+                        <rect key="frame" x="0.0" y="44" width="414" height="101.66666666666666"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="Secondary"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                            <color key="textColor" name="Font"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
+                            <color key="textColor" name="Font"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MmA-t2-oB2" kind="relationship" relationship="rootViewController" id="Qlu-To-2T6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rIJ-kq-OYb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="868.52678571428567"/>
         </scene>
     </scenes>
     <color key="tintColor" name="Font"/>
